@@ -1,0 +1,2940 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>이랜드건설 현장 체크리스트</title>
+    <style>
+        body {
+            font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #fafafa;
+            color: #212121;
+            line-height: 1.4;
+            font-weight: 400;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 0 1px #e0e0e0;
+        }
+        h1 {
+            text-align: center;
+            margin: 0;
+            padding: 1.5rem;
+            background: #212121;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .info-section {
+            background: #f5f5f5;
+            padding: 1.5rem;
+            margin: 1.5rem;
+            border: 2px solid #212121;
+        }
+        .info-section h3 {
+            margin: 0 0 1rem 0;
+            color: #212121;
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        .info-item label {
+            font-weight: 500;
+            color: #424242;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .info-item input {
+            padding: 0.5rem;
+            border: 2px solid #212121;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            background: white;
+        }
+        .info-item input:focus {
+            outline: none;
+            border-color: #ff5722;
+            background: #fff3e0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem;
+            background: white;
+            border: 2px solid #212121;
+        }
+        th {
+            background: #212121;
+            color: white;
+            padding: 0.4rem 0.5rem;
+            text-align: center;
+            font-weight: 500;
+            font-size: 0.85rem;
+            border: 1px solid #424242;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        td {
+            padding: 0.2rem 0.5rem;
+            border: 1px solid #e0e0e0;
+            vertical-align: top;
+            transition: background-color 0.2s ease;
+            font-size: 0.85rem;
+            line-height: 1.3;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .category {
+            background: #e0e0e0;
+            font-weight: 500;
+            text-align: center;
+            color: #212121;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.2rem 0.5rem;
+        }
+        .checkbox-cell {
+            text-align: center;
+            padding: 0.2rem;
+        }
+        input[type="checkbox"] {
+            transform: scale(1.1);
+            margin: 0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            accent-color: #ff5722;
+        }
+        input[type="checkbox"]:hover {
+            transform: scale(1.2);
+        }
+        .criteria {
+            font-size: 0.8rem;
+            color: #424242;
+            line-height: 1.3;
+            background-color: #fafafa;
+            padding: 0.2rem 0.5rem;
+            border-left: 3px solid #ff5722;
+        }
+        .remarks {
+            width: 150px;
+        }
+        .remarks input, .remarks textarea {
+            width: 100%;
+            padding: 0.2rem;
+            border: 2px solid #212121;
+            font-size: 0.8rem;
+            min-height: 35px;
+            resize: vertical;
+            font-family: inherit;
+            transition: all 0.2s ease;
+            background: white;
+        }
+        .remarks input:focus, .remarks textarea:focus {
+            outline: none;
+            border-color: #ff5722;
+            background: #fff3e0;
+        }
+        .bulk-select {
+            background: #212121;
+            color: white;
+            border: 2px solid #212121;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 0.75rem;
+            margin: 0.25rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .bulk-select:hover {
+            background: #ff5722;
+            border-color: #ff5722;
+        }
+        .bulk-select-section {
+            background: #f5f5f5;
+            padding: 1.5rem;
+            margin: 1.5rem;
+            text-align: center;
+            border: 2px solid #212121;
+        }
+        .section-header {
+            background: #212121;
+            color: white;
+            font-weight: 500;
+            text-align: center;
+            padding: 1rem;
+            margin: 1.5rem 1.5rem 0.75rem 1.5rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .print-btn {
+            background: #212121;
+            color: white;
+            border: 2px solid #212121;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 0.75rem;
+            margin: 0.25rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .print-btn:hover {
+            background: #ff5722;
+            border-color: #ff5722;
+        }
+        .export-btn {
+            background: #212121;
+            color: white;
+            border: 2px solid #212121;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 0.75rem;
+            margin: 0.25rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .export-btn:hover {
+            background: #ff5722;
+            border-color: #ff5722;
+        }
+        .button-group {
+            text-align: center;
+            margin: 1.5rem;
+            padding: 1rem;
+            background: #f5f5f5;
+            border: 2px solid #212121;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+            background-color: #95a5a6;
+        }
+        .status-indicator.ready {
+            background-color: #27ae60;
+        }
+        .status-indicator.loading {
+            background-color: #f39c12;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        .debug-panel {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+        }
+        .debug-toggle {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            margin: 5px;
+        }
+        .debug-toggle:hover {
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+        }
+        .floating-action-btn {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 48px;
+            height: 48px;
+            background: #212121;
+            color: white;
+            border: 2px solid #212121;
+            cursor: pointer;
+            font-size: 1.25rem;
+            transition: all 0.2s ease;
+            z-index: 1000;
+        }
+        .floating-action-btn:hover {
+            background: #ff5722;
+            border-color: #ff5722;
+        }
+        .tooltip {
+            position: absolute;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 1001;
+        }
+        .floating-action-btn:hover .tooltip {
+            opacity: 1;
+        }
+        .section-nav {
+            position: sticky;
+            top: 0;
+            background: #212121;
+            padding: 0.75rem 0;
+            margin: 1.5rem;
+            z-index: 100;
+        }
+        .section-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
+        .section-nav li {
+            margin: 0;
+        }
+        .section-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 0.75rem;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.2s ease;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .section-nav a:hover {
+            background: #ff5722;
+        }
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            z-index: 10000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+        .notification.show {
+            transform: translateX(0);
+        }
+        .notification.success {
+            background: linear-gradient(135deg, #27ae60, #229954);
+        }
+        .notification.error {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+        .notification.info {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+        .stats-section {
+            background: #f5f5f5;
+            padding: 1.5rem;
+            margin: 1.5rem;
+            border: 2px solid #212121;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+        }
+        .stat-item {
+            background: white;
+            padding: 1rem;
+            text-align: center;
+            border: 2px solid #212121;
+            transition: all 0.2s ease;
+        }
+        .stat-item:hover {
+            background: #fff3e0;
+        }
+        .stat-number {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #212121;
+        }
+        .stat-label {
+            font-size: 0.75rem;
+            color: #424242;
+            margin-top: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background-color: #e0e0e0;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        .progress-fill {
+            height: 100%;
+            background-color: #ff5722;
+            transition: width 0.3s ease;
+        }
+        .progress-text {
+            text-align: center;
+            margin-top: 0.25rem;
+            font-weight: 500;
+            color: #212121;
+            font-size: 0.75rem;
+        }
+        /* 모바일 최적화 */
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+            
+            .container {
+                max-width: 100%;
+                margin: 0;
+                box-shadow: none;
+            }
+            
+            h1 {
+                font-size: 1.1rem;
+                padding: 0.75rem;
+                letter-spacing: 0.3px;
+            }
+            
+            .info-section {
+                margin: 0.5rem;
+                padding: 0.75rem;
+                border-width: 1px;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            .info-item input {
+                font-size: 16px; /* iOS 줌 방지 */
+                padding: 0.4rem;
+            }
+            
+            table {
+                margin: 0.5rem;
+                font-size: 0.65rem;
+                border-width: 1px;
+            }
+            
+            th, td {
+                padding: 0.2rem 0.3rem;
+                font-size: 0.65rem;
+                border-width: 1px;
+            }
+            
+            .category {
+                font-size: 0.65rem;
+                padding: 0.2rem 0.3rem;
+            }
+            
+            .criteria {
+                font-size: 0.65rem;
+                padding: 0.2rem 0.3rem;
+                line-height: 1.2;
+                border-left-width: 2px;
+            }
+            
+            .remarks {
+                width: 70px;
+            }
+            
+            .remarks input, .remarks textarea {
+                font-size: 0.65rem;
+                min-height: 30px;
+                padding: 0.2rem;
+                border-width: 1px;
+            }
+            
+            .bulk-select-section {
+                margin: 0.5rem;
+                padding: 0.75rem;
+                border-width: 1px;
+            }
+            
+            .bulk-select {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.65rem;
+                margin: 0.2rem;
+                border-width: 1px;
+            }
+            
+            .button-group {
+                margin: 0.5rem;
+                padding: 0.5rem;
+            }
+            
+            .print-btn, .export-btn {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.65rem;
+                margin: 0.2rem;
+                border-width: 1px;
+            }
+            
+            .section-header {
+                margin: 0.5rem 0.5rem 0.3rem 0.5rem;
+                padding: 0.6rem;
+                font-size: 0.8rem;
+            }
+            
+            .section-nav {
+                margin: 0.5rem;
+                padding: 0.3rem 0;
+            }
+            
+            .section-nav a {
+                padding: 0.2rem 0.4rem;
+                font-size: 0.65rem;
+                margin: 0.1rem;
+            }
+            
+            .stats-section {
+                margin: 0.5rem;
+                padding: 0.75rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.4rem;
+            }
+            
+            .stat-item {
+                padding: 0.6rem;
+            }
+            
+            .stat-number {
+                font-size: 0.9rem;
+            }
+            
+            .stat-label {
+                font-size: 0.65rem;
+            }
+            
+            .floating-action-btn {
+                bottom: 0.8rem;
+                right: 0.8rem;
+                width: 40px;
+                height: 40px;
+                font-size: 0.9rem;
+            }
+            
+            /* 모바일에서 뷰 전환 버튼 위치 조정 */
+            .view-toggle {
+                top: 0.5rem;
+                right: 0.5rem;
+                padding: 0.4rem 0.8rem;
+                font-size: 0.7rem;
+            }
+            
+            /* 모바일에서 체크박스 크기 조정 */
+            input[type="checkbox"] {
+                transform: scale(1.2);
+                margin: 0.1rem;
+            }
+            
+            /* 모바일에서 스크롤 최적화 */
+            .table-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            /* 모바일에서 터치 최적화 */
+            button, input, textarea {
+                -webkit-tap-highlight-color: transparent;
+            }
+        }
+        
+        /* 작은 모바일 화면 최적화 */
+        @media (max-width: 480px) {
+            body {
+                font-size: 13px;
+            }
+            
+            h1 {
+                font-size: 1rem;
+                padding: 0.6rem;
+            }
+            
+            .info-section {
+                margin: 0.3rem;
+                padding: 0.5rem;
+            }
+            
+            table {
+                margin: 0.3rem;
+                font-size: 0.6rem;
+            }
+            
+            th, td {
+                padding: 0.15rem 0.2rem;
+                font-size: 0.6rem;
+            }
+            
+            .criteria {
+                font-size: 0.6rem;
+                padding: 0.15rem 0.2rem;
+            }
+            
+            .remarks {
+                width: 60px;
+            }
+            
+            .remarks input, .remarks textarea {
+                font-size: 0.6rem;
+                min-height: 25px;
+                padding: 0.15rem;
+            }
+            
+            .bulk-select {
+                padding: 0.3rem 0.5rem;
+                font-size: 0.6rem;
+                margin: 0.15rem;
+            }
+            
+            .print-btn, .export-btn {
+                padding: 0.3rem 0.5rem;
+                font-size: 0.6rem;
+                margin: 0.15rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 0.3rem;
+            }
+            
+            .floating-action-btn {
+                bottom: 0.6rem;
+                right: 0.6rem;
+                width: 36px;
+                height: 36px;
+                font-size: 0.8rem;
+            }
+            
+            /* 작은 모바일에서 뷰 전환 버튼 위치 조정 */
+            .view-toggle {
+                top: 0.3rem;
+                right: 0.3rem;
+                padding: 0.3rem 0.6rem;
+                font-size: 0.65rem;
+            }
+        }
+        
+        /* 태블릿 최적화 */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                max-width: 95%;
+            }
+            
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* 데스크탑/모바일 전환 버튼 (고정) */
+        .view-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: #ff5722;
+            color: white;
+            border: 2px solid #ff5722;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 1001;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .view-toggle:hover {
+            background: #e64a19;
+            border-color: #e64a19;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .view-toggle.mobile {
+            background: #ff5722;
+            border-color: #ff5722;
+        }
+        
+        .view-toggle.desktop {
+            background: #212121;
+            border-color: #212121;
+        }
+        
+        /* 모바일 전용 스타일 */
+        .mobile-view .table-container {
+            overflow-x: auto;
+            margin: 1rem;
+        }
+        
+        .mobile-view table {
+            min-width: 800px;
+            margin: 0;
+        }
+        
+        .mobile-view .info-section {
+            margin: 1rem;
+        }
+        
+        .mobile-view .bulk-select-section {
+            margin: 1rem;
+        }
+        
+        .mobile-view .button-group {
+            margin: 1rem;
+        }
+        
+        .mobile-view .section-header {
+            margin: 1rem 1rem 0.5rem 1rem;
+        }
+        
+        .mobile-view .stats-section {
+            margin: 1rem;
+        }
+        
+        @media print {
+            .print-btn, .info-section, .view-toggle {
+                display: none;
+            }
+            body {
+                background-color: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mobile-view">
+        <button class="view-toggle mobile" onclick="toggleView()" id="viewToggle">🖥️ 데스크탑</button>
+        <h1>이랜드건설 현장 체크리스트</h1>
+        
+        <div class="info-section">
+            <h3>현장 정보</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <label>현장명:</label>
+                    <input type="text" placeholder="현장명을 입력하세요">
+                </div>
+                <div class="info-item">
+                    <label>점검일:</label>
+                    <input type="date">
+                </div>
+                <div class="info-item">
+                    <label>점검자:</label>
+                    <input type="text" placeholder="점검자명">
+                </div>
+                <div class="info-item">
+                    <label>동/호수:</label>
+                    <input type="text" placeholder="예: 101동 501호">
+                </div>
+            </div>
+        </div>
+
+                <div class="button-group">
+            <button class="print-btn" onclick="window.print()">인쇄하기</button>
+            <button class="export-btn" onclick="exportToCSV()">CSV 내보내기</button>
+            <button class="export-btn" onclick="exportToExcel()">Excel 내보내기</button>
+            <button class="export-btn" onclick="toggleFullscreen()">전체화면</button>
+        </div>
+
+        <div class="bulk-select-section">
+            <h3>🔧 전체선택 기능</h3>
+            <button class="bulk-select" onclick="selectAllByType('reflected')">전체 반영</button>
+            <button class="bulk-select" onclick="selectAllByType('notReflected')">전체 미반영</button>
+            <button class="bulk-select" onclick="selectAllByType('incorrect')">전체 오시공</button>
+            <button class="bulk-select" onclick="selectAllByType('correct')">전체 잘한시공</button>
+            <button class="bulk-select" onclick="clearAllSelections()">전체 해제</button>
+
+        </div>
+
+        <div class="section-nav">
+            <ul>
+                <li><a href="#현관/복도">현관/복도</a></li>
+                <li><a href="#거실">거실</a></li>
+                <li><a href="#주방/식당">주방/식당</a></li>
+                <li><a href="#침실">침실</a></li>
+                <li><a href="#욕실">욕실</a></li>
+                <li><a href="#발코니/실외기실">발코니/실외기실</a></li>
+            </ul>
+        </div>
+
+        <div class="stats-section">
+            <h3>📊 점검 현황 통계</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalItems">0</div>
+                    <div class="stat-label">전체 항목</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="reflectedItems">0</div>
+                    <div class="stat-label">반영 완료</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="reflectedProgress" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text" id="reflectedPercent">0%</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="notReflectedItems">0</div>
+                    <div class="stat-label">미반영</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="notReflectedProgress" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text" id="notReflectedPercent">0%</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="correctConstruction">0</div>
+                    <div class="stat-label">잘한시공</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="constructionProgress" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text" id="constructionPercent">0%</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="incorrectConstruction">0</div>
+                    <div class="stat-label">오시공</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="incorrectProgress" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text" id="incorrectPercent">0%</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="completionRate">0%</div>
+                    <div class="stat-label">전체 완료율</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="completionProgress" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text" id="completionPercent">0%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header" id="현관/복도">현관/복도</div>
+        <table>
+            <thead>
+                <tr>
+                    <th width="15%">구분</th>
+                    <th width="25%">점검항목</th>
+                    <th width="30%">세부기준/치수</th>
+                    <th width="8%">반영</th>
+                    <th width="8%">미반영</th>
+                    <th width="8%">오시공</th>
+                    <th width="8%">잘한시공</th>
+                    <th width="6%">비고</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="category">현관/복도</td>
+                    <td>현관 폭</td>
+                    <td class="criteria">84㎡ 미만: 1,000mm / 84㎡: 1,200mm / 84㎡ 초과: 1,200mm 이상 (제6조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">현관/복도</td>
+                    <td>현관 레벨</td>
+                    <td class="criteria">FL-60mm (FSD결로성능 반영시 FL-50mm) (제6조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">현관/복도</td>
+                    <td>현관디딤판 폭</td>
+                    <td class="criteria">60mm (제6조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">현관/복도</td>
+                    <td>복도 폭</td>
+                    <td class="criteria">84㎡ 미만: 1,000~1,100mm / 84㎡: 1,150~1,200mm / 84㎡ 초과: 1,200mm (제6조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">현관/복도</td>
+                    <td>신발장 깊이</td>
+                    <td class="criteria">400mm 이상 (깊은 수납장 600mm 이상) (제6조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">현관/복도</td>
+                    <td>현관문 규격</td>
+                    <td class="criteria">1,100×2,100mm (완전개폐시 1,000×2,100mm / 결로성능 반영시 최소 1,050×2,100mm) (제6조 ③)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">현관/복도</td>
+                    <td>현관문 방화용 도어클로저</td>
+                    <td class="criteria">방화용 도어클로저 설치 (제6조 ③)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">현관/복도</td>
+                    <td>현관 출입 동선</td>
+                    <td class="criteria">E/V홀에서 세대 내부로의 시야가 차단되도록 현관출입 유도 / 가구 반입 고려하여 동선 꺾임이 과도하지 않도록 계획 (제6조 ①)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">현관/복도</td>
+                    <td>세대간 프라이버시</td>
+                    <td class="criteria">세대간 프라이버시 및 회전반경 1,500mm 확보 (제6조 ①)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">현관/복도</td>
+                    <td>복도 길이 최소화</td>
+                    <td class="criteria">세대내 각 실까지의 동선이 간결하도록 계획 / 복도 길이 최소화하여 효율적인 공간 계획 (제6조 ①)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">현관/복도</td>
+                    <td>전용 85㎡ 이상 신발장</td>
+                    <td class="criteria">전용 85㎡ 이상은 양면장 또는 이면장으로 계획, 팬트리 깊이는 700mm 이상 계획 (제6조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">현관/복도</td>
+                    <td>현관문 피난방향</td>
+                    <td class="criteria">피난방향(세대내부→외부)으로 개폐하도록 계획 (제6조 ③)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">현관/복도</td>
+                    <td>현관문 침입방어 성능</td>
+                    <td class="criteria">현관문은 침입방어 성능을 갖춘 제품 사용 (제6조 ③)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">현관/복도</td>
+                    <td>출입문 측면 벽길이</td>
+                    <td class="criteria">출입문 측면에 벽길이 300mm 이상 (권장 350mm 이상) 확보 (제6조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">현관/복도</td>
+                    <td>현관 바닥</td>
+                    <td class="criteria">SL±0mm (FL+60mm) / 결로성능보유 방화문 반영시: SL±0mm (FL+70mm) (제6조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">현관/복도</td>
+                    <td>현관 천정고</td>
+                    <td class="criteria">층고 2,830mm일 경우 2,360mm (복도=2,300mm) (제6조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">현관/복도</td>
+                    <td>현관문틀 단열</td>
+                    <td class="criteria">문틀 주변 cold bridge 방지, 단열재 연속시공 (제6조 ⑤)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">현관/복도</td>
+                    <td>최하층 바닥단열</td>
+                    <td class="criteria">바닥 단열재와 벽체 단열재 연속 설치 (제6조 ⑤)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">현관/복도</td>
+                    <td>세대 인터폰 설치</td>
+                    <td class="criteria">진입 및 출입문 개폐방향을 고려하여 설치 / 현관문 손잡이측 문틀에서 350mm 이격 설치 (제6조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">현관/복도</td>
+                    <td>바닥 타일 마감</td>
+                    <td class="criteria">바닥 타일 마감 시 가능한 이형타일이 발생하지 않도록 계획 (제6조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="section-header" id="거실">거실</div>
+        <table>
+            <thead>
+                <tr>
+                    <th width="15%">구분</th>
+                    <th width="25%">점검항목</th>
+                    <th width="30%">세부기준/치수</th>
+                    <th width="8%">반영</th>
+                    <th width="8%">미반영</th>
+                    <th width="8%">오시공</th>
+                    <th width="8%">잘한시공</th>
+                    <th width="6%">비고</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="category">거실</td>
+                    <td>거실 전면폭</td>
+                    <td class="criteria">60㎡미만: 3,000mm 이상 / 60㎡이상~85㎡미만(80㎡미만): 3,000~3,600mm / 80㎡이상: 3,600mm 이상 / 85㎡이상~102㎡미만: 4,800mm 이상 / 102㎡이상: 5,100mm 이상 (제7조 ①)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">거실</td>
+                    <td>창호 및 날개벽</td>
+                    <td class="criteria">3,000이상~4,200미만: 300+창호사이즈+300 (2W), 4,200이상: 3W (제7조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">거실</td>
+                    <td>창호 분합문 조합</td>
+                    <td class="criteria">2,400이하: W/2+W/2 (2W) / 2,400초과~3,300이하: 1,000+(W-1000) / 3,300초과~3,900미만: 900+{W-(900×2)}+900 (3W) / 3,900이상~4,800이하: 1,000+{W-(1,000×2)}+1,000 / 4,800초과: 1,100+{W-(1,100×2)}+1,100 (제7조 ③)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">거실</td>
+                    <td>창호 유리 최대높이</td>
+                    <td class="criteria">2,100mm 반영, 2,400mm 초과 금지 (제7조 ③)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">거실</td>
+                    <td>거실 바닥</td>
+                    <td class="criteria">SL±0mm (FL+120mm) (제7조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">거실</td>
+                    <td>거실 천정고</td>
+                    <td class="criteria">층고 2,830mm일 경우 2,300mm (제7조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">거실</td>
+                    <td>결로방지재</td>
+                    <td class="criteria">450mm 폭 설치 (슬라브와 벽체 교차부 상하부 450mm 구간) (제7조 ⑤)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">거실</td>
+                    <td>창호 주변 단열</td>
+                    <td class="criteria">외부창호 상하부턱 외벽 단열기준에 맞게 단열조치 (제7조 ⑤)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">거실</td>
+                    <td>창호틀 단열</td>
+                    <td class="criteria">외부창호틀과 벽체 단열재 만나는 부분 발포우레탄폼 충진 (제7조 ⑤)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">거실</td>
+                    <td>층간소음완충재</td>
+                    <td class="criteria">비확장세대 내부 분합문틀 하부 취부 (제7조 ⑤)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">거실</td>
+                    <td>최하층 바닥단열</td>
+                    <td class="criteria">바닥 단열재와 벽체 단열재 연속 설치 (제7조 ⑤)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">거실</td>
+                    <td>창호 유리 최대높이</td>
+                    <td class="criteria">창호 유리의 최대 높이는 2,100mm 반영, 2,400mm를 초과하지 않도록 계획 (제7조 ③)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">거실</td>
+                    <td>유리 내풍압 구조검토</td>
+                    <td class="criteria">유리 내풍압 구조검토 실시 및 구조계산서 제출, 실시설계 반영 (제7조 ③)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">거실</td>
+                    <td>거실 창호 개폐 방향</td>
+                    <td class="criteria">거실 창호가 2짝인 경우 거실장 위치에서 열리게 개폐 계획 (제7조 ③)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">거실</td>
+                    <td>발코니 분합문 상부 인방</td>
+                    <td class="criteria">비확장세대 발코니 분합문 상부 인방은 경량벽체로 시공 (제7조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">거실</td>
+                    <td>H/N wall pad 설치</td>
+                    <td class="criteria">H/N wall pad는 벽면에 설치(가변 벽체시 두께 150mm 이상 확보), 기둥에 설치될 경우 기둥 내력 산정시 wall pad 설치 고려 (제7조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">거실</td>
+                    <td>에어콘 전용 콘센트</td>
+                    <td class="criteria">에어콘 전용 콘센트 설치 및 배관위치 표기 (제7조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">거실</td>
+                    <td>붙박이장 하부 바닥면</td>
+                    <td class="criteria">붙박이장 설치 시 하부 바닥면의 마감재 미시공 (재료마감표 및 관련도면 등에 반영) (제7조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">거실</td>
+                    <td>국기봉 설치 위치</td>
+                    <td class="criteria">국기봉은 외부에서 바라봤을 때 거실난간 왼쪽에 설치 (도서작성 시 미러 주의) (제7조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">거실</td>
+                    <td>거실 보 위치 표기</td>
+                    <td class="criteria">넓은 SPAN에 따라 보가 설치되는 경우, 반드시 거실 보 위치 표기하여 기계, 전기 인프라와 간섭되지 않도록 사전 검토 필요 (제7조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="section-header" id="주방/식당">주방/식당</div>
+        <table>
+            <thead>
+                <tr>
+                    <th width="15%">구분</th>
+                    <th width="25%">점검항목</th>
+                    <th width="30%">세부기준/치수</th>
+                    <th width="8%">반영</th>
+                    <th width="8%">미반영</th>
+                    <th width="8%">오시공</th>
+                    <th width="8%">잘한시공</th>
+                    <th width="6%">비고</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>주방가구 길이</td>
+                    <td class="criteria">60㎡미만: 3,000mm 이상, 60㎡이상~85㎡미만: 3,300mm 이상, 85㎡이상~102㎡미만: 3,600mm 이상, 102㎡이상~135㎡미만: 4,200mm 이상, 135㎡이상: 4,500mm 이상 (제8조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>개수대 설치장 깊이</td>
+                    <td class="criteria">700mm 확보 (제8조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>기타장 깊이</td>
+                    <td class="criteria">650mm 확보 (제8조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>식탁 설치 공간</td>
+                    <td class="criteria">4인용: 1,400~1,600mm, 6인용: 1,800~2,000mm (제8조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>식탁 폭</td>
+                    <td class="criteria">의자-식탁-의자 고려하여 2,000mm 이상, 통행폭 최소 800mm 이상 (제8조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>냉장고 설치 공간</td>
+                    <td class="criteria">좌우간섭 없는 경우: 1,100×850mm, 간섭 있는 경우: 1,200×850mm (제8조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>주방창 규격(상부장 미설치)</td>
+                    <td class="criteria">1,200×1,100mm 이상 (제8조 ③)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>주방창 규격(상부장 설치)</td>
+                    <td class="criteria">1,200×600mm 이상 (제8조 ③)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>주방창 설치높이(상부장 미설치)</td>
+                    <td class="criteria">FL+1,200mm (골조 높이) (제8조 ③)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>주방창 설치높이(상부장 설치)</td>
+                    <td class="criteria">FL+915mm (골조 높이) (제8조 ③)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>주방 바닥</td>
+                    <td class="criteria">SL±0mm (FL+120mm) (제8조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>주방 천정고</td>
+                    <td class="criteria">층고 2,830mm일 경우 2,300mm (제8조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>결로방지재</td>
+                    <td class="criteria">450mm 폭 설치 (슬라브와 벽체 교차부 상하부 450mm 구간) (제8조 ⑤)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>창호 주변 단열</td>
+                    <td class="criteria">외부창호 상하부턱 외벽 단열기준에 맞게 단열조치 (제8조 ⑤)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>창호틀 단열</td>
+                    <td class="criteria">외부창호틀과 벽체 단열재 만나는 부분 발포우레탄폼 충진 (제8조 ⑤)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>보조주방 출입문 층간소음완충재</td>
+                    <td class="criteria">보조주방 출입문 틀 하부 취부 (제8조 ⑤)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>주방배기 덕트</td>
+                    <td class="criteria">25T 보온 시공 (제8조 ⑤)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>주방가구 배치 순서</td>
+                    <td class="criteria">주방가구는 주부동선을 고려하여 ⑴냉장고→⑵개수대→⑶조리대→⑷가열대→⑸배선대 순으로 배치 (제8조 ①)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>주방창 상부 가구</td>
+                    <td class="criteria">주방창 상부 가구 미설치 원칙 (상부장 설치 필요시 건축담당자 협의 필수) (제8조 ③)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>보조주방 출입문</td>
+                    <td class="criteria">보조주방(발코니-2) 출입문과 보조주방 세탁수전 간섭 최소화 (간섭발생 시 스토퍼 등 조치계획) (제8조 ③)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>주방용 AD/PD 위치</td>
+                    <td class="criteria">비확장시 주방용 AD/PD가 발코니에 위치하는 경우 주방과 접하도록 계획 (제8조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>조리대와 AD 이격거리</td>
+                    <td class="criteria">조리대와 AD 이격거리는 3m 이내로 계획 (제8조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>보일러 연도 이격거리</td>
+                    <td class="criteria">개별난방 시스템 적용시 보일러 연도와 열리는 창호와의 이격거리를 최소 600mm 이상 확보 (제8조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>세대별 독립 직배기</td>
+                    <td class="criteria">세대별 독립 직배기 방식 적용 원칙, 별도의 주방용 AD 불필요 (변경시 별도 협의) (제8조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>주방가구 하부 마감</td>
+                    <td class="criteria">주방가구 하부는 에폭시 프라이머 마감반영 (제8조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">주방/식당</td>
+                    <td>발코니-2 동선</td>
+                    <td class="criteria">단위세대 비확장 타입의 경우, 발코니-2 설치 가전 고려하여 반출입 동선 및 너비 확보 (최소폭 900mm 이상) (제8조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="section-header" id="침실">침실</div>
+        <table>
+            <thead>
+                <tr>
+                    <th width="15%">구분</th>
+                    <th width="25%">점검항목</th>
+                    <th width="30%">세부기준/치수</th>
+                    <th width="8%">반영</th>
+                    <th width="8%">미반영</th>
+                    <th width="8%">오시공</th>
+                    <th width="8%">잘한시공</th>
+                    <th width="6%">비고</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="category">침실</td>
+                    <td>안방 크기</td>
+                    <td class="criteria">60㎡미만: 3,000×2,700mm 이상, 120㎡이상: 4,200×3,900mm 이상 (제9조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">침실</td>
+                    <td>드레스룸/파우더룸 통로</td>
+                    <td class="criteria">최소폭 800mm 이상 확보 (제9조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">침실</td>
+                    <td>안방 출입문</td>
+                    <td class="criteria">여닫이문(1,000×2,100mm), 도어프레임폭 100mm (제9조 ③)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">침실</td>
+                    <td>기타 침실 최소 폭</td>
+                    <td class="criteria">최소 폭 2,700mm 이상, 최소 깊이 3,000mm 이상 (제10조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">침실</td>
+                    <td>침실 출입문</td>
+                    <td class="criteria">여닫이 문(900×2,100mm), 문틀 케이싱 고려 (제10조 ③)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">침실</td>
+                    <td>창호 설치 날개벽</td>
+                    <td class="criteria">최소 폭 300mm 이상 확보(커튼설치 공간 및 가구 공간) (제10조 ③)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">침실</td>
+                    <td>침실 바닥</td>
+                    <td class="criteria">SL±0mm (FL+120mm) (제10조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">침실</td>
+                    <td>침실 천정고</td>
+                    <td class="criteria">층고 2,830mm일 경우 2,300mm (제10조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">침실</td>
+                    <td>결로방지재</td>
+                    <td class="criteria">450mm 폭 설치 (슬라브와 벽체 교차부 상하부 450mm 구간) (제10조 ⑤)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">침실</td>
+                    <td>층간소음완충재</td>
+                    <td class="criteria">내부 분합문틀 하부에 층간소음완충재 취부 (제10조 ⑤)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="section-header" id="욕실">욕실</div>
+        <table>
+            <thead>
+                <tr>
+                    <th width="15%">구분</th>
+                    <th width="25%">점검항목</th>
+                    <th width="30%">세부기준/치수</th>
+                    <th width="8%">반영</th>
+                    <th width="8%">미반영</th>
+                    <th width="8%">오시공</th>
+                    <th width="8%">잘한시공</th>
+                    <th width="6%">비고</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="category">욕실</td>
+                    <td>욕실 슬라브</td>
+                    <td class="criteria">180mm (거실 슬라브보다 30mm 낮춤), 난방코일 반영시 150mm (제11조 ①)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">욕실</td>
+                    <td>욕실 바닥 단차</td>
+                    <td class="criteria">거실과 욕실의 슬라브 단차 60mm (제11조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">욕실</td>
+                    <td>욕실 바닥 마감</td>
+                    <td class="criteria">세면대 및 양변기: 90mm(FL-60), 샤워부스: 70mm(FL-80) (제11조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">욕실</td>
+                    <td>욕실 천정고</td>
+                    <td class="criteria">층고 2,830mm일 경우 2,200mm (샤워부스는 2,220mm) (제11조 ④)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">욕실</td>
+                    <td>욕실 출입문</td>
+                    <td class="criteria">여닫이 문(700mm×2,100mm) (제11조 ③)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">욕실</td>
+                    <td>욕실 바닥 난방</td>
+                    <td class="criteria">배관 및 슬라브 하부 30mm 단열재 설치 (제11조 ⑤)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">욕실</td>
+                    <td>욕실 벽체 단열몰탈</td>
+                    <td class="criteria">단열몰탈 적용 (열전도율 0.036W/mk 이하) (제11조 ⑤)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">욕실</td>
+                    <td>욕실 외부창호</td>
+                    <td class="criteria">22mm 복층유리 이중창(불투명 유리) 적용 (제11조 ⑥)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">욕실</td>
+                    <td>욕실 바닥 난방</td>
+                    <td class="criteria">원룸형 이외(59㎡이상) 욕실은 바닥 난방 시공 (제11조 ⑥)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="section-header" id="발코니/실외기실">발코니/실외기실</div>
+        <table>
+            <thead>
+                <tr>
+                    <th width="15%">구분</th>
+                    <th width="25%">점검항목</th>
+                    <th width="30%">세부기준/치수</th>
+                    <th width="8%">반영</th>
+                    <th width="8%">미반영</th>
+                    <th width="8%">오시공</th>
+                    <th width="8%">잘한시공</th>
+                    <th width="6%">비고</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="category">발코니</td>
+                    <td>안방 발코니 날개벽</td>
+                    <td class="criteria">200mm 이상 확보하여 배수,우수겸용 입상배관 설치공간 (제12조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">발코니</td>
+                    <td>김치냉장고 위치</td>
+                    <td class="criteria">폭 1,000mm, 깊이 800mm 이상 확보 (제12조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">발코니</td>
+                    <td>세탁기 위치</td>
+                    <td class="criteria">폭 900mm, 깊이 900mm 이상 확보 (제12조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">발코니</td>
+                    <td>보조주방 깊이</td>
+                    <td class="criteria">대형 평형 보조주방 고려시 깊이 650mm 이상 확보 (제12조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">발코니</td>
+                    <td>선홈통 및 수전</td>
+                    <td class="criteria">콘크리트 날개벽 200mm 이상 확보 (제12조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">발코니</td>
+                    <td>세탁실 설치공간</td>
+                    <td class="criteria">세탁기 및 건조기 깊이 900mm/폭 900mm 확보 (병렬배치 시 폭 1,500mm 이상) (제12조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">실외기실</td>
+                    <td>실외기실 설치공간</td>
+                    <td class="criteria">최소 1,450mm×1,150mm 공간 확보 (제12조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">실외기실</td>
+                    <td>보일러 설치공간</td>
+                    <td class="criteria">350mm 이상의 날개벽 포함하여 폭 800mm 이상의 설치공간 (제12조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+                <tr>
+                    <td class="category">실외기실</td>
+                    <td>보일러 연도 이격거리</td>
+                    <td class="criteria">좌우 또는 상하 돌출물과 1,500mm 이상 이격, 개구부와 600mm 이상 이격 (제12조 ②)</td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="checkbox-cell"><input type="checkbox"></td>
+                    <td class="remarks"><input type="text" placeholder="비고"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="debug-panel">
+        <button class="debug-toggle">디버깅 토글</button>
+        <p>디버깅 정보가 여기에 표시됩니다.</p>
+    </div>
+
+    <button class="floating-action-btn" onclick="scrollToTop()" title="맨 위로">
+        ↑
+        <span class="tooltip">맨 위로</span>
+    </button>
+
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div class="notification"></div>
+
+    <div class="section-nav">
+        <ul>
+            <li><a href="#현관/복도">현관/복도</a></li>
+            <li><a href="#거실">거실</a></li>
+            <li><a href="#주방/식당">주방/식당</a></li>
+            <li><a href="#침실">침실</a></li>
+            <li><a href="#욕실">욕실</a></li>
+            <li><a href="#발코니/실외기실">발코니/실외기실</a></li>
+        </ul>
+    </div>
+
+    <script>
+        // 디버깅 및 에러 처리 함수
+        function debugLog(message, data = null) {
+            if (console && console.log) {
+                console.log(`[체크리스트 디버그] ${message}`, data);
+            }
+        }
+
+        function handleError(error, context) {
+            console.error(`[체크리스트 에러] ${context}:`, error);
+            // 사용자에게 에러 알림 (선택사항)
+            // alert(`오류가 발생했습니다: ${context}`);
+        }
+
+        // DOM 요소 존재 확인 함수
+        function getElementSafely(id) {
+            const element = document.getElementById(id);
+            if (!element) {
+                handleError(new Error(`Element with id '${id}' not found`), 'getElementSafely');
+                return null;
+            }
+            return element;
+        }
+
+        // 통계 업데이트 함수
+        function updateStats() {
+            try {
+                debugLog('통계 업데이트 시작');
+                
+                const rows = document.querySelectorAll('tbody tr');
+                let totalItems = 0;
+                let reflectedItems = 0;
+                let notReflectedItems = 0;
+                let incorrectConstruction = 0;
+                let correctConstruction = 0;
+
+                debugLog(`총 ${rows.length}개의 행 발견`);
+
+                // 각 행의 체크박스들을 그룹으로 처리
+                rows.forEach((row, rowIndex) => {
+                    const checkboxesInRow = row.querySelectorAll('input[type="checkbox"]');
+                    if (checkboxesInRow.length >= 4) {
+                        totalItems++;
+                        
+                        // 반영 체크박스 (첫 번째)
+                        if (checkboxesInRow[0].checked) {
+                            reflectedItems++;
+                        }
+                        
+                        // 미반영 체크박스 (두 번째)
+                        if (checkboxesInRow[1].checked) {
+                            notReflectedItems++;
+                        }
+                        
+                        // 오시공 체크박스 (세 번째)
+                        if (checkboxesInRow[2].checked) {
+                            incorrectConstruction++;
+                        }
+                        
+                        // 잘한시공 체크박스 (네 번째)
+                        if (checkboxesInRow[3].checked) {
+                            correctConstruction++;
+                        }
+                    } else {
+                        debugLog(`행 ${rowIndex + 1}에 체크박스가 부족함: ${checkboxesInRow.length}개`);
+                    }
+                });
+
+                debugLog('통계 계산 완료', {
+                    totalItems,
+                    reflectedItems,
+                    notReflectedItems,
+                    incorrectConstruction,
+                    correctConstruction
+                });
+
+                // 통계 업데이트 (안전한 방식)
+                const elements = {
+                    totalItems: getElementSafely('totalItems'),
+                    reflectedItems: getElementSafely('reflectedItems'),
+                    notReflectedItems: getElementSafely('notReflectedItems'),
+                    incorrectConstruction: getElementSafely('incorrectConstruction'),
+                    correctConstruction: getElementSafely('correctConstruction')
+                };
+
+                if (elements.totalItems) elements.totalItems.textContent = totalItems;
+                if (elements.reflectedItems) elements.reflectedItems.textContent = reflectedItems;
+                if (elements.notReflectedItems) elements.notReflectedItems.textContent = notReflectedItems;
+                if (elements.incorrectConstruction) elements.incorrectConstruction.textContent = incorrectConstruction;
+                if (elements.correctConstruction) elements.correctConstruction.textContent = correctConstruction;
+
+                // 진행률 계산 및 업데이트
+                const reflectedPercent = totalItems > 0 ? Math.round((reflectedItems / totalItems) * 100) : 0;
+                const notReflectedPercent = totalItems > 0 ? Math.round((notReflectedItems / totalItems) * 100) : 0;
+                const constructionPercent = totalItems > 0 ? Math.round((correctConstruction / totalItems) * 100) : 0;
+                const incorrectPercent = totalItems > 0 ? Math.round((incorrectConstruction / totalItems) * 100) : 0;
+                const completionPercent = totalItems > 0 ? Math.round(((reflectedItems + correctConstruction) / totalItems) * 100) : 0;
+
+                debugLog('진행률 계산 완료', {
+                    reflectedPercent,
+                    notReflectedPercent,
+                    constructionPercent,
+                    incorrectPercent,
+                    completionPercent
+                });
+
+                // 진행률 바 업데이트 (안전한 방식)
+                const progressElements = {
+                    reflectedProgress: getElementSafely('reflectedProgress'),
+                    notReflectedProgress: getElementSafely('notReflectedProgress'),
+                    constructionProgress: getElementSafely('constructionProgress'),
+                    incorrectProgress: getElementSafely('incorrectProgress'),
+                    completionProgress: getElementSafely('completionProgress')
+                };
+
+                if (progressElements.reflectedProgress) progressElements.reflectedProgress.style.width = reflectedPercent + '%';
+                if (progressElements.notReflectedProgress) progressElements.notReflectedProgress.style.width = notReflectedPercent + '%';
+                if (progressElements.constructionProgress) progressElements.constructionProgress.style.width = constructionPercent + '%';
+                if (progressElements.incorrectProgress) progressElements.incorrectProgress.style.width = incorrectPercent + '%';
+                if (progressElements.completionProgress) progressElements.completionProgress.style.width = completionPercent + '%';
+
+                // 진행률 텍스트 업데이트 (안전한 방식)
+                const percentElements = {
+                    reflectedPercent: getElementSafely('reflectedPercent'),
+                    notReflectedPercent: getElementSafely('notReflectedPercent'),
+                    constructionPercent: getElementSafely('constructionPercent'),
+                    incorrectPercent: getElementSafely('incorrectPercent'),
+                    completionPercent: getElementSafely('completionPercent'),
+                    completionRate: getElementSafely('completionRate')
+                };
+
+                if (percentElements.reflectedPercent) percentElements.reflectedPercent.textContent = reflectedPercent + '%';
+                if (percentElements.notReflectedPercent) percentElements.notReflectedPercent.textContent = notReflectedPercent + '%';
+                if (percentElements.constructionPercent) percentElements.constructionPercent.textContent = constructionPercent + '%';
+                if (percentElements.incorrectPercent) percentElements.incorrectPercent.textContent = incorrectPercent + '%';
+                if (percentElements.completionPercent) percentElements.completionPercent.textContent = completionPercent + '%';
+                if (percentElements.completionRate) percentElements.completionRate.textContent = completionPercent + '%';
+
+                // 진행률에 따른 색상 변경
+                const progressBars = document.querySelectorAll('.progress-fill');
+                progressBars.forEach(bar => {
+                    const percent = parseInt(bar.style.width);
+                    const barId = bar.id;
+                    
+                    // 미반영과 오시공은 별도 색상 적용
+                    if (barId === 'notReflectedProgress') {
+                        bar.style.backgroundColor = '#f39c12'; // 주황색
+                    } else if (barId === 'incorrectProgress') {
+                        bar.style.backgroundColor = '#e74c3c'; // 빨간색
+                    } else {
+                        // 반영, 잘한시공, 전체완료율은 기존 로직 적용
+                        if (percent >= 80) {
+                            bar.style.backgroundColor = '#27ae60'; // 녹색
+                        } else if (percent >= 60) {
+                            bar.style.backgroundColor = '#f39c12'; // 주황색
+                        } else {
+                            bar.style.backgroundColor = '#e74c3c'; // 빨간색
+                        }
+                    }
+                });
+
+                debugLog('통계 업데이트 완료');
+            } catch (error) {
+                handleError(error, 'updateStats');
+            }
+        }
+
+        // 전체선택 함수들
+        function selectAllByType(type) {
+            try {
+                debugLog(`전체선택 실행: ${type}`);
+                const rows = document.querySelectorAll('tbody tr');
+                let selectedCount = 0;
+                
+                rows.forEach((row, rowIndex) => {
+                    const checkboxesInRow = row.querySelectorAll('input[type="checkbox"]');
+                    if (checkboxesInRow.length >= 4) {
+                        // 모든 체크박스 해제
+                        checkboxesInRow.forEach(checkbox => checkbox.checked = false);
+                        
+                        // 선택된 타입에 따라 체크박스 선택
+                        switch(type) {
+                            case 'reflected':
+                                checkboxesInRow[0].checked = true; // 반영
+                                selectedCount++;
+                                break;
+                            case 'notReflected':
+                                checkboxesInRow[1].checked = true; // 미반영
+                                selectedCount++;
+                                break;
+                            case 'incorrect':
+                                checkboxesInRow[2].checked = true; // 오시공
+                                selectedCount++;
+                                break;
+                            case 'correct':
+                                checkboxesInRow[3].checked = true; // 잘한시공
+                                selectedCount++;
+                                break;
+                        }
+                    }
+                });
+                
+                updateStats();
+                debugLog(`전체선택 완료: ${selectedCount}개 항목 선택됨`);
+            } catch (error) {
+                handleError(error, 'selectAllByType');
+            }
+        }
+
+        function clearAllSelections() {
+            try {
+                debugLog('전체 해제 실행');
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                let clearedCount = 0;
+                
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        checkbox.checked = false;
+                        clearedCount++;
+                    }
+                });
+                
+                updateStats();
+                debugLog(`전체 해제 완료: ${clearedCount}개 체크박스 해제됨`);
+            } catch (error) {
+                handleError(error, 'clearAllSelections');
+            }
+        }
+
+        // 비고란을 textarea로 변경하는 함수
+        function convertRemarksToTextarea() {
+            try {
+                debugLog('비고란 textarea 변환 시작');
+                const remarksInputs = document.querySelectorAll('.remarks input[type="text"]');
+                debugLog(`변환할 input 요소: ${remarksInputs.length}개`);
+                
+                let convertedCount = 0;
+                remarksInputs.forEach((input, index) => {
+                    const textarea = document.createElement('textarea');
+                    textarea.placeholder = input.placeholder;
+                    textarea.value = input.value;
+                    textarea.className = input.className;
+                    textarea.style.width = '100%';
+                    textarea.style.minHeight = '60px';
+                    textarea.style.resize = 'vertical';
+                    textarea.style.fontFamily = 'inherit';
+                    textarea.style.padding = '10px';
+                    textarea.style.border = '2px solid #bdc3c7';
+                    textarea.style.borderRadius = '8px';
+                    textarea.style.fontSize = '0.9em';
+                    textarea.style.transition = 'all 0.3s ease';
+                    
+                    // 포커스 이벤트 추가
+                    textarea.addEventListener('focus', function() {
+                        this.style.outline = 'none';
+                        this.style.borderColor = '#3498db';
+                        this.style.boxShadow = '0 0 10px rgba(52, 152, 219, 0.3)';
+                    });
+                    
+                    textarea.addEventListener('blur', function() {
+                        this.style.borderColor = '#bdc3c7';
+                        this.style.boxShadow = 'none';
+                    });
+                    
+                    input.parentNode.replaceChild(textarea, input);
+                    convertedCount++;
+                });
+                
+                debugLog(`비고란 textarea 변환 완료: ${convertedCount}개 변환됨`);
+            } catch (error) {
+                handleError(error, 'convertRemarksToTextarea');
+            }
+        }
+
+        // 체크박스 이벤트 리스너 설정 함수
+        function setupCheckboxListeners() {
+            try {
+                debugLog('체크박스 이벤트 리스너 설정 시작');
+                const rows = document.querySelectorAll('tbody tr');
+                let listenerCount = 0;
+                
+                rows.forEach((row, rowIndex) => {
+                    const checkboxesInRow = row.querySelectorAll('input[type="checkbox"]');
+                    if (checkboxesInRow.length >= 4) {
+                        checkboxesInRow.forEach((checkbox, index) => {
+                            checkbox.addEventListener('change', function() {
+                                debugLog(`체크박스 변경: 행 ${rowIndex + 1}, 인덱스 ${index}, 체크됨: ${this.checked}`);
+                                
+                                if (this.checked) {
+                                    // 같은 행의 다른 체크박스들 해제
+                                    checkboxesInRow.forEach((otherCheckbox, otherIndex) => {
+                                        if (otherIndex !== index) {
+                                            otherCheckbox.checked = false;
+                                        }
+                                    });
+                                }
+                                updateStats();
+                            });
+                            listenerCount++;
+                        });
+                    } else {
+                        debugLog(`행 ${rowIndex + 1}에 체크박스가 부족함: ${checkboxesInRow.length}개`);
+                    }
+                });
+                
+                debugLog(`체크박스 이벤트 리스너 설정 완료: ${listenerCount}개 리스너 추가됨`);
+            } catch (error) {
+                handleError(error, 'setupCheckboxListeners');
+            }
+        }
+
+        // 페이지 로드 시 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                debugLog('페이지 로드 시작');
+                
+                // 비고란을 textarea로 변경
+                convertRemarksToTextarea();
+                
+                // 체크박스 이벤트 리스너 설정
+                setupCheckboxListeners();
+                
+                // 초기 통계 계산
+                updateStats();
+                
+                debugLog('페이지 로드 완료');
+            } catch (error) {
+                handleError(error, 'DOMContentLoaded');
+            }
+        });
+
+        // CSV 내보내기 함수
+        function exportToCSV() {
+            try {
+                debugLog('CSV 내보내기 시작');
+                showLoading();
+                
+                const siteInfo = getSiteInfo();
+                const rows = document.querySelectorAll('tbody tr');
+                let csvContent = '\uFEFF'; // UTF-8 BOM for Korean
+                
+                // 헤더 정보 추가
+                csvContent += `현장명,${siteInfo.siteName}\n`;
+                csvContent += `점검일,${siteInfo.inspectionDate}\n`;
+                csvContent += `점검자,${siteInfo.inspector}\n`;
+                csvContent += `동/호수,${siteInfo.unit}\n`;
+                csvContent += '\n'; // 빈 줄
+                
+                // 테이블 헤더
+                csvContent += '구분,점검항목,세부기준/치수,반영,미반영,오시공,잘한시공,비고\n';
+                
+                rows.forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    if (cells.length >= 8) {
+                        const category = cells[0].textContent.trim();
+                        const item = cells[1].textContent.trim();
+                        const criteria = cells[2].textContent.trim();
+                        const reflected = cells[3].querySelector('input[type="checkbox"]').checked ? 'Y' : 'N';
+                        const notReflected = cells[4].querySelector('input[type="checkbox"]').checked ? 'Y' : 'N';
+                        const incorrect = cells[5].querySelector('input[type="checkbox"]').checked ? 'Y' : 'N';
+                        const correct = cells[6].querySelector('input[type="checkbox"]').checked ? 'Y' : 'N';
+                        const remarks = cells[7].querySelector('textarea') ? cells[7].querySelector('textarea').value : '';
+                        
+                        csvContent += `"${category}","${item}","${criteria}","${reflected}","${notReflected}","${incorrect}","${correct}","${remarks}"\n`;
+                    }
+                });
+                
+                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                const link = document.createElement('a');
+                const url = URL.createObjectURL(blob);
+                link.setAttribute('href', url);
+                link.setAttribute('download', `체크리스트_${siteInfo.siteName}_${new Date().toISOString().slice(0,10)}.csv`);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                hideLoading();
+                showNotification('CSV 파일이 성공적으로 다운로드되었습니다.', 'success');
+                debugLog('CSV 내보내기 완료');
+            } catch (error) {
+                hideLoading();
+                handleError(error, 'exportToCSV');
+                showNotification('CSV 내보내기 중 오류가 발생했습니다.', 'error');
+            }
+        }
+
+        // Excel 내보내기 함수 (개선된 버전)
+        function exportToExcel() {
+            try {
+                debugLog('Excel 내보내기 시작');
+                showLoading();
+                
+                // 현장 정보 가져오기
+                const siteInfo = getSiteInfo();
+                
+                // 통계 계산
+                const stats = calculateStats();
+                
+                // 모든 테이블 데이터 수집
+                const tables = document.querySelectorAll('table');
+                let excelTables = '';
+                
+                tables.forEach((table, tableIndex) => {
+                    const sectionNames = ['현관/복도', '거실', '주방/식당', '침실', '욕실', '발코니/실외기실'];
+                    const sectionName = sectionNames[tableIndex] || `섹션${tableIndex + 1}`;
+                    
+                    excelTables += `
+                        <div class="section-header">${sectionName}</div>
+                        <table border="1" cellpadding="5" cellspacing="0" style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                            <thead>
+                                <tr style="background-color: #2c3e50; color: white; font-weight: bold;">
+                                    <th style="border: 1px solid #34495e; padding: 8px; text-align: center; width: 12%;">구분</th>
+                                    <th style="border: 1px solid #34495e; padding: 8px; text-align: center; width: 20%;">점검항목</th>
+                                    <th style="border: 1px solid #34495e; padding: 8px; text-align: center; width: 25%;">세부기준/치수</th>
+                                    <th style="border: 1px solid #34495e; padding: 8px; text-align: center; width: 8%;">반영</th>
+                                    <th style="border: 1px solid #34495e; padding: 8px; text-align: center; width: 8%;">미반영</th>
+                                    <th style="border: 1px solid #34495e; padding: 8px; text-align: center; width: 8%;">오시공</th>
+                                    <th style="border: 1px solid #34495e; padding: 8px; text-align: center; width: 8%;">잘한시공</th>
+                                    <th style="border: 1px solid #34495e; padding: 8px; text-align: center; width: 11%;">비고</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+                    
+                    const rows = table.querySelectorAll('tbody tr');
+                    rows.forEach(row => {
+                        const cells = row.querySelectorAll('td');
+                        if (cells.length >= 7) {
+                            const category = cells[0].textContent.trim();
+                            const item = cells[1].textContent.trim();
+                            const criteria = cells[2].textContent.trim();
+                            const checkboxes = row.querySelectorAll('input[type="checkbox"]');
+                            const remarks = row.querySelector('input[type="text"], textarea');
+                            const remarksText = remarks ? remarks.value.trim() : '';
+                            
+                            // 체크박스 상태 확인
+                            const reflected = checkboxes[0] && checkboxes[0].checked ? '✓' : '✗';
+                            const notReflected = checkboxes[1] && checkboxes[1].checked ? '✓' : '✗';
+                            const incorrect = checkboxes[2] && checkboxes[2].checked ? '✓' : '✗';
+                            const correct = checkboxes[3] && checkboxes[3].checked ? '✓' : '✗';
+                            
+                            excelTables += `
+                                <tr>
+                                    <td style="border: 1px solid #bdc3c7; padding: 6px; text-align: center; background-color: #ecf0f1; font-weight: bold; font-size: 11px;">${category}</td>
+                                    <td style="border: 1px solid #bdc3c7; padding: 6px; font-size: 11px;">${item}</td>
+                                    <td style="border: 1px solid #bdc3c7; padding: 6px; background-color: #f8f9fa; font-size: 10px; line-height: 1.3;">${criteria}</td>
+                                    <td style="border: 1px solid #bdc3c7; padding: 6px; text-align: center; font-size: 14px; font-weight: bold; color: ${checkboxes[0] && checkboxes[0].checked ? '#27ae60' : '#e74c3c'};">${reflected}</td>
+                                    <td style="border: 1px solid #bdc3c7; padding: 6px; text-align: center; font-size: 14px; font-weight: bold; color: ${checkboxes[1] && checkboxes[1].checked ? '#f39c12' : '#e74c3c'};">${notReflected}</td>
+                                    <td style="border: 1px solid #bdc3c7; padding: 6px; text-align: center; font-size: 14px; font-weight: bold; color: ${checkboxes[2] && checkboxes[2].checked ? '#e74c3c' : '#95a5a6'};">${incorrect}</td>
+                                    <td style="border: 1px solid #bdc3c7; padding: 6px; text-align: center; font-size: 14px; font-weight: bold; color: ${checkboxes[3] && checkboxes[3].checked ? '#27ae60' : '#95a5a6'};">${correct}</td>
+                                    <td style="border: 1px solid #bdc3c7; padding: 6px; font-size: 10px; color: #2c3e50;">${remarksText}</td>
+                                </tr>
+                            `;
+                        }
+                    });
+                    
+                    excelTables += `
+                            </tbody>
+                        </table>
+                    `;
+                });
+                
+                const htmlContent = `
+                    <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+                    <head>
+                        <meta charset="UTF-8">
+                        <title>이랜드건설 현장 체크리스트</title>
+                        <style>
+                            body { 
+                                font-family: 'Malgun Gothic', '맑은 고딕', Arial, sans-serif; 
+                                margin: 20px; 
+                                font-size: 12px;
+                                line-height: 1.4;
+                            }
+                            h1 { 
+                                color: #2c3e50; 
+                                text-align: center; 
+                                border-bottom: 3px solid #3498db; 
+                                padding-bottom: 15px; 
+                                margin-bottom: 30px;
+                                font-size: 24px;
+                            }
+                            .info-section { 
+                                background: linear-gradient(135deg, #f8f9fa, #e9ecef); 
+                                padding: 20px; 
+                                border-radius: 10px; 
+                                margin-bottom: 25px; 
+                                border: 2px solid #3498db;
+                                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                            }
+                            .info-section h3 {
+                                color: #2c3e50;
+                                margin-top: 0;
+                                margin-bottom: 15px;
+                                font-size: 18px;
+                                border-bottom: 2px solid #3498db;
+                                padding-bottom: 8px;
+                            }
+                            .info-grid { 
+                                display: table; 
+                                width: 100%; 
+                                border-collapse: collapse;
+                            }
+                            .info-item { 
+                                display: table-row; 
+                            }
+                            .info-item label { 
+                                display: table-cell; 
+                                font-weight: bold; 
+                                padding: 8px 15px; 
+                                background-color: #e3f2fd;
+                                border: 1px solid #bbdefb;
+                                width: 25%;
+                                color: #1565c0;
+                            }
+                            .info-item span { 
+                                display: table-cell; 
+                                padding: 8px 15px; 
+                                border: 1px solid #bbdefb;
+                                background-color: #fafafa;
+                            }
+                            .stats-section { 
+                                background: linear-gradient(135deg, #e8f4fd, #d1ecf1); 
+                                padding: 20px; 
+                                border-radius: 10px; 
+                                margin-bottom: 25px; 
+                                border: 2px solid #3498db;
+                                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                            }
+                            .stats-section h3 {
+                                color: #2c3e50;
+                                margin-top: 0;
+                                margin-bottom: 15px;
+                                font-size: 18px;
+                                border-bottom: 2px solid #3498db;
+                                padding-bottom: 8px;
+                            }
+                            .stats-grid { 
+                                display: table; 
+                                width: 100%; 
+                                border-collapse: collapse;
+                            }
+                            .stats-item { 
+                                display: table-row; 
+                            }
+                            .stats-item label { 
+                                display: table-cell; 
+                                font-weight: bold; 
+                                padding: 8px 15px; 
+                                background-color: #e8f5e8;
+                                border: 1px solid #c8e6c9;
+                                width: 30%;
+                                color: #2e7d32;
+                            }
+                            .stats-item span { 
+                                display: table-cell; 
+                                padding: 8px 15px; 
+                                border: 1px solid #c8e6c9;
+                                background-color: #f1f8e9;
+                                font-weight: bold;
+                                color: #388e3c;
+                            }
+                            .section-header { 
+                                background: linear-gradient(135deg, #2c3e50, #34495e); 
+                                color: white; 
+                                padding: 15px; 
+                                margin: 25px 0 15px 0; 
+                                font-weight: bold; 
+                                text-align: center; 
+                                font-size: 16px;
+                                border-radius: 8px;
+                                box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+                            }
+                            table { 
+                                border-collapse: collapse; 
+                                width: 100%; 
+                                margin-bottom: 25px; 
+                                page-break-inside: avoid;
+                                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                            }
+                            th { 
+                                background: linear-gradient(135deg, #2c3e50, #34495e); 
+                                color: white; 
+                                font-weight: bold; 
+                                font-size: 11px;
+                                padding: 10px 8px;
+                                text-align: center;
+                                border: 1px solid #34495e;
+                            }
+                            td { 
+                                border: 1px solid #bdc3c7; 
+                                padding: 6px; 
+                                text-align: left; 
+                                vertical-align: top; 
+                                font-size: 11px;
+                            }
+                            .category { 
+                                background-color: #ecf0f1; 
+                                font-weight: bold; 
+                                text-align: center; 
+                                color: #2c3e50;
+                            }
+                            .criteria { 
+                                background-color: #f8f9fa; 
+                                font-size: 10px; 
+                                line-height: 1.3;
+                                color: #495057;
+                            }
+                            @media print { 
+                                body { margin: 0; }
+                                .section-header { page-break-before: auto; }
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <h1>🏗️ 이랜드건설 현장 체크리스트</h1>
+                        
+                        <div class="info-section">
+                            <h3>📋 현장 정보</h3>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <label>🏢 현장명:</label>
+                                    <span>${siteInfo.siteName || '미입력'}</span>
+                                </div>
+                                <div class="info-item">
+                                    <label>📅 점검일:</label>
+                                    <span>${siteInfo.inspectionDate || '미입력'}</span>
+                                </div>
+                                <div class="info-item">
+                                    <label>👤 점검자:</label>
+                                    <span>${siteInfo.inspector || '미입력'}</span>
+                                </div>
+                                <div class="info-item">
+                                    <label>🏠 동/호수:</label>
+                                    <span>${siteInfo.unit || '미입력'}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stats-section">
+                            <h3>📊 점검 현황 통계</h3>
+                            <div class="stats-grid">
+                                <div class="stats-item">
+                                    <label>📋 전체 항목:</label>
+                                    <span>${stats.totalItems}개</span>
+                                </div>
+                                <div class="stats-item">
+                                    <label>✅ 반영 완료:</label>
+                                    <span>${stats.reflectedItems}개 (${stats.reflectedPercent}%)</span>
+                                </div>
+                                <div class="stats-item">
+                                    <label>⚠️ 미반영:</label>
+                                    <span>${stats.notReflectedItems}개 (${stats.notReflectedPercent}%)</span>
+                                </div>
+                                <div class="stats-item">
+                                    <label>👍 잘한시공:</label>
+                                    <span>${stats.correctConstruction}개 (${stats.constructionPercent}%)</span>
+                                </div>
+                                <div class="stats-item">
+                                    <label>❌ 오시공:</label>
+                                    <span>${stats.incorrectConstruction}개 (${stats.incorrectPercent}%)</span>
+                                </div>
+                                <div class="stats-item">
+                                    <label>🎯 전체 완료율:</label>
+                                    <span>${stats.completionPercent}%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        ${excelTables}
+                    </body>
+                    </html>
+                `;
+                
+                const blob = new Blob([htmlContent], { type: 'application/vnd.ms-excel' });
+                const link = document.createElement('a');
+                const url = URL.createObjectURL(blob);
+                link.setAttribute('href', url);
+                link.setAttribute('download', `이랜드건설_체크리스트_${siteInfo.siteName || '현장'}_${new Date().toISOString().slice(0,10)}.xls`);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                hideLoading();
+                showNotification('Excel 파일이 성공적으로 다운로드되었습니다.', 'success');
+                debugLog('Excel 내보내기 완료');
+            } catch (error) {
+                hideLoading();
+                handleError(error, 'exportToExcel');
+                showNotification('Excel 내보내기 중 오류가 발생했습니다.', 'error');
+            }
+        }
+
+        // 현장 정보 가져오기 함수
+        function getSiteInfo() {
+            const inputs = document.querySelectorAll('.info-item input');
+            return {
+                siteName: inputs[0] ? inputs[0].value : '',
+                inspectionDate: inputs[1] ? inputs[1].value : '',
+                inspector: inputs[2] ? inputs[2].value : '',
+                unit: inputs[3] ? inputs[3].value : ''
+            };
+        }
+
+        // 로딩 표시 함수
+        function showLoading() {
+            const overlay = document.querySelector('.loading-overlay');
+            if (overlay) {
+                overlay.style.display = 'flex';
+            }
+        }
+
+        function hideLoading() {
+            const overlay = document.querySelector('.loading-overlay');
+            if (overlay) {
+                overlay.style.display = 'none';
+            }
+        }
+
+        // 알림 표시 함수
+        function showNotification(message, type = 'info') {
+            const notification = document.querySelector('.notification');
+            if (notification) {
+                notification.textContent = message;
+                notification.className = `notification ${type}`;
+                notification.classList.add('show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
+        }
+        
+        // 데스크탑/모바일 전환
+        function toggleView() {
+            const container = document.querySelector('.container');
+            const toggleBtn = document.getElementById('viewToggle');
+            const isMobile = container.classList.contains('mobile-view');
+            
+            if (isMobile) {
+                // 모바일에서 데스크탑으로 전환
+                container.classList.remove('mobile-view');
+                container.classList.add('desktop-view');
+                toggleBtn.textContent = '📱 모바일';
+                toggleBtn.classList.remove('mobile');
+                toggleBtn.classList.add('desktop');
+                showNotification('데스크탑 모드로 전환되었습니다', 'info');
+            } else {
+                // 데스크탑에서 모바일로 전환
+                container.classList.remove('desktop-view');
+                container.classList.add('mobile-view');
+                toggleBtn.textContent = '🖥️ 데스크탑';
+                toggleBtn.classList.remove('desktop');
+                toggleBtn.classList.add('mobile');
+                showNotification('모바일 모드로 전환되었습니다', 'info');
+            }
+        }
+        
+        // 전체화면 전환
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().then(() => {
+                    showNotification('전체화면 모드로 전환되었습니다', 'info');
+                }).catch(err => {
+                    showNotification('전체화면 전환에 실패했습니다', 'error');
+                });
+            } else {
+                document.exitFullscreen().then(() => {
+                    showNotification('전체화면 모드가 해제되었습니다', 'info');
+                });
+            }
+        }
+        
+
+        
+        // 화면 크기 자동 감지 (기본 모바일)
+        function checkScreenSize() {
+            const container = document.querySelector('.container');
+            const toggleBtn = document.getElementById('viewToggle');
+            
+            // 기본적으로 모바일 뷰 유지
+            container.classList.add('mobile-view');
+            if (toggleBtn) {
+                toggleBtn.textContent = '🖥️ 데스크탑';
+                toggleBtn.classList.add('mobile');
+                toggleBtn.classList.remove('desktop');
+            }
+        }
+        
+
+
+        // 맨 위로 스크롤 함수
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // 부드러운 스크롤 함수
+        function smoothScrollTo(elementId) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // 통계 계산 함수 (Excel 내보내기용)
+        function calculateStats() {
+            try {
+                const rows = document.querySelectorAll('tbody tr');
+                let totalItems = 0;
+                let reflectedItems = 0;
+                let notReflectedItems = 0;
+                let incorrectConstruction = 0;
+                let correctConstruction = 0;
+
+                rows.forEach(row => {
+                    const checkboxesInRow = row.querySelectorAll('input[type="checkbox"]');
+                    if (checkboxesInRow.length >= 4) {
+                        totalItems++;
+                        
+                        if (checkboxesInRow[0].checked) {
+                            reflectedItems++;
+                        }
+                        
+                        if (checkboxesInRow[1].checked) {
+                            notReflectedItems++;
+                        }
+                        
+                        if (checkboxesInRow[2].checked) {
+                            incorrectConstruction++;
+                        }
+                        
+                        if (checkboxesInRow[3].checked) {
+                            correctConstruction++;
+                        }
+                    }
+                });
+
+                const reflectedPercent = totalItems > 0 ? Math.round((reflectedItems / totalItems) * 100) : 0;
+                const notReflectedPercent = totalItems > 0 ? Math.round((notReflectedItems / totalItems) * 100) : 0;
+                const constructionPercent = totalItems > 0 ? Math.round((correctConstruction / totalItems) * 100) : 0;
+                const incorrectPercent = totalItems > 0 ? Math.round((incorrectConstruction / totalItems) * 100) : 0;
+                const completionPercent = totalItems > 0 ? Math.round(((reflectedItems + correctConstruction) / totalItems) * 100) : 0;
+
+                return {
+                    totalItems,
+                    reflectedItems,
+                    notReflectedItems,
+                    incorrectConstruction,
+                    correctConstruction,
+                    reflectedPercent,
+                    notReflectedPercent,
+                    constructionPercent,
+                    incorrectPercent,
+                    completionPercent
+                };
+            } catch (error) {
+                handleError(error, 'calculateStats');
+                return {
+                    totalItems: 0,
+                    reflectedItems: 0,
+                    notReflectedItems: 0,
+                    incorrectConstruction: 0,
+                    correctConstruction: 0,
+                    reflectedPercent: 0,
+                    notReflectedPercent: 0,
+                    constructionPercent: 0,
+                    incorrectPercent: 0,
+                    completionPercent: 0
+                };
+            }
+        }
+
+        // 디버깅 패널 업데이트 함수
+        function updateDebugPanel(message) {
+            try {
+                const debugPanel = document.querySelector('.debug-panel');
+                const debugContent = debugPanel.querySelector('p');
+                const timestamp = new Date().toLocaleTimeString();
+                debugContent.innerHTML += `<br>[${timestamp}] ${message}`;
+                debugPanel.scrollTop = debugPanel.scrollHeight;
+            } catch (error) {
+                handleError(error, 'updateDebugPanel');
+            }
+        }
+
+        // 디버깅 토글 함수
+        function toggleDebugPanel() {
+            try {
+                const debugPanel = document.querySelector('.debug-panel');
+                const isVisible = debugPanel.style.display !== 'none';
+                debugPanel.style.display = isVisible ? 'none' : 'block';
+                
+                if (!isVisible) {
+                    updateDebugPanel('디버깅 패널이 활성화되었습니다.');
+                }
+            } catch (error) {
+                handleError(error, 'toggleDebugPanel');
+            }
+        }
+
+        // 페이지 완전 로드 후 추가 검증
+        window.addEventListener('load', function() {
+            try {
+                debugLog('페이지 완전 로드 완료');
+                
+                // 기본 모바일 모드 설정
+                const container = document.querySelector('.container');
+                const toggleBtn = document.getElementById('viewToggle');
+                
+                // 항상 모바일 뷰로 시작
+                container.classList.add('mobile-view');
+                if (toggleBtn) {
+                    toggleBtn.textContent = '🖥️ 데스크탑';
+                    toggleBtn.classList.add('mobile');
+                    toggleBtn.classList.remove('desktop');
+                }
+                
+                // 화면 크기 자동 감지
+                checkScreenSize();
+                
+                // 최종 검증
+                const totalCheckboxes = document.querySelectorAll('input[type="checkbox"]').length;
+                const totalRows = document.querySelectorAll('tbody tr').length;
+                const expectedCheckboxes = totalRows * 4; // 각 행당 4개 체크박스
+                
+                debugLog('최종 검증 결과', {
+                    totalCheckboxes,
+                    totalRows,
+                    expectedCheckboxes,
+                    isCorrect: totalCheckboxes === expectedCheckboxes
+                });
+                
+                if (totalCheckboxes !== expectedCheckboxes) {
+                    console.warn(`[체크리스트 경고] 체크박스 수가 예상과 다릅니다. 예상: ${expectedCheckboxes}, 실제: ${totalCheckboxes}`);
+                    updateDebugPanel(`경고: 체크박스 수 불일치 (예상: ${expectedCheckboxes}, 실제: ${totalCheckboxes})`);
+                } else {
+                    updateDebugPanel('모든 체크박스가 정상적으로 로드되었습니다.');
+                }
+                
+                // 디버깅 토글 버튼 이벤트 리스너 설정
+                const debugToggle = document.querySelector('.debug-toggle');
+                if (debugToggle) {
+                    debugToggle.addEventListener('click', toggleDebugPanel);
+                }
+                
+                // 섹션 네비게이션 이벤트 리스너 설정
+                const navLinks = document.querySelectorAll('.section-nav a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href').substring(1);
+                        smoothScrollTo(targetId);
+                    });
+                });
+                
+                // 화면 크기 변경 감지
+                window.addEventListener('resize', checkScreenSize);
+                
+            } catch (error) {
+                handleError(error, 'window.load');
+            }
+        });
+
+    </script>
+</body>
+</html> 

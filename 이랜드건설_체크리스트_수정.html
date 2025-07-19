@@ -2746,14 +2746,12 @@
             const container = document.querySelector('.container');
             const toggleBtn = document.getElementById('viewToggle');
             
-            // 기본적으로 모바일 뷰 유지 (사용자가 수동으로 변경할 때까지)
-            if (!container.classList.contains('desktop-view')) {
-                container.classList.add('mobile-view');
-                if (toggleBtn) {
-                    toggleBtn.textContent = '🖥️ 데스크탑';
-                    toggleBtn.classList.add('mobile');
-                    toggleBtn.classList.remove('desktop');
-                }
+            // 기본적으로 모바일 뷰 유지
+            container.classList.add('mobile-view');
+            if (toggleBtn) {
+                toggleBtn.textContent = '🖥️ 데스크탑';
+                toggleBtn.classList.add('mobile');
+                toggleBtn.classList.remove('desktop');
             }
         }
         
@@ -2878,6 +2876,18 @@
         window.addEventListener('load', function() {
             try {
                 debugLog('페이지 완전 로드 완료');
+                
+                // 기본 모바일 모드 설정
+                const container = document.querySelector('.container');
+                const toggleBtn = document.getElementById('viewToggle');
+                
+                // 항상 모바일 뷰로 시작
+                container.classList.add('mobile-view');
+                if (toggleBtn) {
+                    toggleBtn.textContent = '🖥️ 데스크탑';
+                    toggleBtn.classList.add('mobile');
+                    toggleBtn.classList.remove('desktop');
+                }
                 
                 // 화면 크기 자동 감지
                 checkScreenSize();
