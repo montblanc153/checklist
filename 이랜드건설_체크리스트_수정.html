@@ -587,6 +587,14 @@
                 font-size: 0.9rem;
             }
             
+            /* 모바일에서 뷰 전환 버튼 위치 조정 */
+            .view-toggle {
+                top: 0.5rem;
+                right: 0.5rem;
+                padding: 0.4rem 0.8rem;
+                font-size: 0.7rem;
+            }
+            
             /* 모바일에서 체크박스 크기 조정 */
             input[type="checkbox"] {
                 transform: scale(1.2);
@@ -670,6 +678,14 @@
                 height: 36px;
                 font-size: 0.8rem;
             }
+            
+            /* 작은 모바일에서 뷰 전환 버튼 위치 조정 */
+            .view-toggle {
+                top: 0.3rem;
+                right: 0.3rem;
+                padding: 0.3rem 0.6rem;
+                font-size: 0.65rem;
+            }
         }
         
         /* 태블릿 최적화 */
@@ -707,9 +723,10 @@
         }
         
         .view-toggle:hover {
-            background: #212121;
-            border-color: #212121;
-            transform: scale(1.05);
+            background: #e64a19;
+            border-color: #e64a19;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
         
         .view-toggle.mobile {
@@ -767,7 +784,7 @@
     </style>
 </head>
 <body>
-            <div class="container mobile-view">
+    <div class="container mobile-view">
         <button class="view-toggle mobile" onclick="toggleView()" id="viewToggle">🖥️ 데스크탑</button>
         <h1>이랜드건설 현장 체크리스트</h1>
         
@@ -2682,7 +2699,7 @@
             }
         }
         
-        // 데스크탑/모바일 전환 (기본 모바일)
+        // 데스크탑/모바일 전환
         function toggleView() {
             const container = document.querySelector('.container');
             const toggleBtn = document.getElementById('viewToggle');
@@ -2691,16 +2708,18 @@
             if (isMobile) {
                 // 모바일에서 데스크탑으로 전환
                 container.classList.remove('mobile-view');
+                container.classList.add('desktop-view');
                 toggleBtn.textContent = '📱 모바일';
                 toggleBtn.classList.remove('mobile');
                 toggleBtn.classList.add('desktop');
                 showNotification('데스크탑 모드로 전환되었습니다', 'info');
             } else {
                 // 데스크탑에서 모바일로 전환
+                container.classList.remove('desktop-view');
                 container.classList.add('mobile-view');
                 toggleBtn.textContent = '🖥️ 데스크탑';
-                toggleBtn.classList.add('mobile');
                 toggleBtn.classList.remove('desktop');
+                toggleBtn.classList.add('mobile');
                 showNotification('모바일 모드로 전환되었습니다', 'info');
             }
         }
@@ -2727,18 +2746,8 @@
             const container = document.querySelector('.container');
             const toggleBtn = document.getElementById('viewToggle');
             
-            // 기본적으로 모바일 뷰로 시작
-            if (!container.classList.contains('mobile-view') && !container.classList.contains('desktop-view')) {
-                container.classList.add('mobile-view');
-                if (toggleBtn) {
-                    toggleBtn.textContent = '🖥️ 데스크탑';
-                    toggleBtn.classList.add('mobile');
-                    toggleBtn.classList.remove('desktop');
-                }
-            }
-            
-            // 화면 크기에 따른 추가 조정
-            if (window.innerWidth <= 768) {
+            // 기본적으로 모바일 뷰 유지 (사용자가 수동으로 변경할 때까지)
+            if (!container.classList.contains('desktop-view')) {
                 container.classList.add('mobile-view');
                 if (toggleBtn) {
                     toggleBtn.textContent = '🖥️ 데스크탑';
