@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이랜드건설 현장 체크리스트</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', '맑은 고딕', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 300;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .feature-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .feature-card h3 {
+            color: #2c3e50;
+            margin: 0 0 15px 0;
+            font-size: 1.3rem;
+        }
+        .feature-card p {
+            color: #666;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .cta-section {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #e8f4fd, #d1ecf1);
+            border-radius: 10px;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .tech-badge {
+            background: #ecf0f1;
+            color: #2c3e50;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏗️ 이랜드건설 현장 체크리스트</h1>
+            <p>현장 점검을 위한 인터랙티브 체크리스트</p>
+        </div>
+        
+        <div class="content">
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>📊 실시간 통계</h3>
+                    <p>점검 현황을 실시간으로 확인하고 진행률을 한눈에 파악할 수 있습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📱 반응형 디자인</h3>
+                    <p>모바일과 데스크탑 모두에서 최적화된 인터페이스를 제공합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔄 전체선택 기능</h3>
+                    <p>한 번에 모든 항목을 선택하거나 해제할 수 있어 편리합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📤 데이터 내보내기</h3>
+                    <p>CSV와 Excel 형식으로 점검 결과를 저장하고 공유할 수 있습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🖨️ 인쇄 지원</h3>
+                    <p>깔끔한 인쇄 레이아웃으로 문서화가 가능합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎨 바우하우스 디자인</h3>
+                    <p>모던하고 깔끔한 UI로 사용성을 극대화했습니다.</p>
+                </div>
+            </div>
+            
+            <div class="tech-stack">
+                <span class="tech-badge">HTML5</span>
+                <span class="tech-badge">CSS3</span>
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">GitHub Pages</span>
+            </div>
+            
+            <div class="cta-section">
+                <h2>지금 바로 체크리스트를 사용해보세요!</h2>
+                <p>현장 점검을 더욱 효율적이고 체계적으로 진행할 수 있습니다.</p>
+                <a href="이랜드건설_체크리스트_수정.html" class="cta-button">체크리스트 시작하기</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 이랜드건설. 모든 권리 보유.</p>
+            <p>건설 엔지니어링 설계2팀 - 이태희</p>
+        </div>
+    </div>
+</body>
+</html> 
