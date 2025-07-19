@@ -2767,12 +2767,14 @@
             const container = document.querySelector('.container');
             const toggleBtn = document.getElementById('viewToggle');
             
-            // 기본적으로 모바일 뷰 유지
-            container.classList.add('mobile-view');
-            if (toggleBtn) {
-                toggleBtn.textContent = '🖥️ 데스크탑';
-                toggleBtn.classList.add('mobile');
-                toggleBtn.classList.remove('desktop');
+            // 사용자가 직접 데스크탑 모드로 전환하지 않은 경우에만 모바일 뷰 유지
+            if (!container.classList.contains('desktop-view')) {
+                container.classList.add('mobile-view');
+                if (toggleBtn) {
+                    toggleBtn.textContent = '🖥️ 데스크탑';
+                    toggleBtn.classList.add('mobile');
+                    toggleBtn.classList.remove('desktop');
+                }
             }
         }
         
@@ -2948,8 +2950,8 @@
                     });
                 });
                 
-                // 화면 크기 변경 감지
-                window.addEventListener('resize', checkScreenSize);
+                // 화면 크기 자동 변경 방지 - 사용자가 직접 버튼을 눌러야만 모드 변경
+                // window.addEventListener('resize', checkScreenSize);
                 
             } catch (error) {
                 handleError(error, 'window.load');
