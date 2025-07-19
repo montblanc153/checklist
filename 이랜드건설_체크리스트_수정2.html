@@ -601,33 +601,100 @@
                 margin: 0.1rem;
             }
             
-            /* 모바일에서 테이블 스크롤 최적화 */
-            .table-container {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                margin: 0.5rem;
-                border: 1px solid #e0e0e0;
+                    /* 모바일에서 테이블 스크롤 최적화 */
+        .table-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 0.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* 모바일에서 테이블 최소 너비 설정 */
+        table {
+            min-width: 700px;
+            margin: 0;
+            border-collapse: collapse;
+        }
+        
+        /* 모바일에서 테이블 셀 최소 너비 및 최적화 */
+        th:nth-child(1), td:nth-child(1) { min-width: 90px; max-width: 90px; } /* 구분 */
+        th:nth-child(2), td:nth-child(2) { min-width: 140px; max-width: 140px; } /* 점검항목 */
+        th:nth-child(3), td:nth-child(3) { min-width: 220px; max-width: 220px; } /* 세부기준 */
+        th:nth-child(4), td:nth-child(4) { min-width: 60px; max-width: 60px; } /* 반영 */
+        th:nth-child(5), td:nth-child(5) { min-width: 60px; max-width: 60px; } /* 미반영 */
+        th:nth-child(6), td:nth-child(6) { min-width: 60px; max-width: 60px; } /* 오시공 */
+        th:nth-child(7), td:nth-child(7) { min-width: 60px; max-width: 60px; } /* 잘한시공 */
+        th:nth-child(8), td:nth-child(8) { min-width: 70px; max-width: 70px; } /* 비고 */
+        
+        /* 모바일에서 테이블 셀 텍스트 줄바꿈 최적화 */
+        .criteria {
+            word-wrap: break-word;
+            word-break: break-all;
+            hyphens: auto;
+            line-height: 1.2;
+        }
+            
+            /* 모바일에서 체크박스 크기 조정 */
+            input[type="checkbox"] {
+                transform: scale(1.4);
+                margin: 0.2rem;
+                min-width: 20px;
+                min-height: 20px;
+                -webkit-appearance: none;
+                appearance: none;
+                border: 2px solid #ff5722;
+                border-radius: 4px;
+                background: white;
+                cursor: pointer;
+                position: relative;
             }
             
-            /* 모바일에서 테이블 최소 너비 설정 */
-            table {
-                min-width: 600px;
-                margin: 0;
+            input[type="checkbox"]:checked {
+                background: #ff5722;
+                border-color: #ff5722;
             }
             
-            /* 모바일에서 테이블 셀 최소 너비 */
-            th:nth-child(1), td:nth-child(1) { min-width: 80px; } /* 구분 */
-            th:nth-child(2), td:nth-child(2) { min-width: 120px; } /* 점검항목 */
-            th:nth-child(3), td:nth-child(3) { min-width: 200px; } /* 세부기준 */
-            th:nth-child(4), td:nth-child(4) { min-width: 50px; } /* 반영 */
-            th:nth-child(5), td:nth-child(5) { min-width: 50px; } /* 미반영 */
-            th:nth-child(6), td:nth-child(6) { min-width: 50px; } /* 오시공 */
-            th:nth-child(7), td:nth-child(7) { min-width: 50px; } /* 잘한시공 */
-            th:nth-child(8), td:nth-child(8) { min-width: 60px; } /* 비고 */
+            input[type="checkbox"]:checked::after {
+                content: '✓';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: white;
+                font-size: 14px;
+                font-weight: bold;
+            }
             
             /* 모바일에서 터치 최적화 */
             button, input, textarea {
                 -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
+            
+            /* 모바일에서 테이블 행 터치 최적화 */
+            tr {
+                touch-action: manipulation;
+            }
+            
+            /* 모바일에서 스크롤바 스타일링 */
+            .table-container::-webkit-scrollbar {
+                height: 8px;
+            }
+            
+            .table-container::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 4px;
+            }
+            
+            .table-container::-webkit-scrollbar-thumb {
+                background: #ff5722;
+                border-radius: 4px;
+            }
+            
+            .table-container::-webkit-scrollbar-thumb:hover {
+                background: #e64a19;
             }
         }
         
@@ -671,6 +738,30 @@
                 min-height: 25px;
                 padding: 0.15rem;
             }
+            
+            /* 작은 모바일에서 체크박스 최적화 */
+            input[type="checkbox"] {
+                transform: scale(1.5);
+                margin: 0.15rem;
+                min-width: 18px;
+                min-height: 18px;
+            }
+            
+            /* 작은 모바일에서 테이블 스크롤 최적화 */
+            .table-container {
+                margin: 0.3rem;
+                border-radius: 6px;
+            }
+            
+            /* 작은 모바일에서 테이블 셀 최소 너비 조정 */
+            th:nth-child(1), td:nth-child(1) { min-width: 80px; max-width: 80px; }
+            th:nth-child(2), td:nth-child(2) { min-width: 120px; max-width: 120px; }
+            th:nth-child(3), td:nth-child(3) { min-width: 180px; max-width: 180px; }
+            th:nth-child(4), td:nth-child(4) { min-width: 50px; max-width: 50px; }
+            th:nth-child(5), td:nth-child(5) { min-width: 50px; max-width: 50px; }
+            th:nth-child(6), td:nth-child(6) { min-width: 50px; max-width: 50px; }
+            th:nth-child(7), td:nth-child(7) { min-width: 50px; max-width: 50px; }
+            th:nth-child(8), td:nth-child(8) { min-width: 60px; max-width: 60px; }
             
             .bulk-select {
                 padding: 0.3rem 0.5rem;
