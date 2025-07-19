@@ -601,11 +601,29 @@
                 margin: 0.1rem;
             }
             
-            /* 모바일에서 스크롤 최적화 */
+            /* 모바일에서 테이블 스크롤 최적화 */
             .table-container {
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
+                margin: 0.5rem;
+                border: 1px solid #e0e0e0;
             }
+            
+            /* 모바일에서 테이블 최소 너비 설정 */
+            table {
+                min-width: 600px;
+                margin: 0;
+            }
+            
+            /* 모바일에서 테이블 셀 최소 너비 */
+            th:nth-child(1), td:nth-child(1) { min-width: 80px; } /* 구분 */
+            th:nth-child(2), td:nth-child(2) { min-width: 120px; } /* 점검항목 */
+            th:nth-child(3), td:nth-child(3) { min-width: 200px; } /* 세부기준 */
+            th:nth-child(4), td:nth-child(4) { min-width: 50px; } /* 반영 */
+            th:nth-child(5), td:nth-child(5) { min-width: 50px; } /* 미반영 */
+            th:nth-child(6), td:nth-child(6) { min-width: 50px; } /* 오시공 */
+            th:nth-child(7), td:nth-child(7) { min-width: 50px; } /* 잘한시공 */
+            th:nth-child(8), td:nth-child(8) { min-width: 60px; } /* 비고 */
             
             /* 모바일에서 터치 최적화 */
             button, input, textarea {
@@ -889,7 +907,8 @@
         </div>
 
         <div class="section-header" id="현관/복도">현관/복도</div>
-        <table>
+        <div class="table-container">
+            <table>
             <thead>
                 <tr>
                     <th width="15%">구분</th>
@@ -1105,8 +1124,10 @@
                 </tr>
             </tbody>
         </table>
+        </div>
 
         <div class="section-header" id="거실">거실</div>
+        <div class="table-container">
         <table>
             <thead>
                 <tr>
