@@ -725,14 +725,14 @@
         }
         
         /* 모바일에서 테이블 셀 최소 너비 및 최적화 */
-        th:nth-child(1), td:nth-child(1) { min-width: 60px; max-width: 60px; } /* 구분 */
-        th:nth-child(2), td:nth-child(2) { min-width: 100px; max-width: 100px; } /* 점검항목 */
-        th:nth-child(3), td:nth-child(3) { min-width: 280px; max-width: 280px; } /* 세부기준 */
-        th:nth-child(4), td:nth-child(4) { min-width: 45px; max-width: 45px; } /* 반영 */
-        th:nth-child(5), td:nth-child(5) { min-width: 45px; max-width: 45px; } /* 미반영 */
-        th:nth-child(6), td:nth-child(6) { min-width: 45px; max-width: 45px; } /* 오시공 */
-        th:nth-child(7), td:nth-child(7) { min-width: 45px; max-width: 45px; } /* 잘한시공 */
-        th:nth-child(8), td:nth-child(8) { min-width: 60px; max-width: 60px; } /* 비고 */
+        th:nth-child(1), td:nth-child(1) { min-width: 50px; max-width: 50px; } /* 구분 */
+        th:nth-child(2), td:nth-child(2) { min-width: 80px; max-width: 80px; } /* 점검항목 */
+        th:nth-child(3), td:nth-child(3) { min-width: 300px; max-width: 300px; } /* 세부기준 */
+        th:nth-child(4), td:nth-child(4) { min-width: 40px; max-width: 40px; } /* 반영 */
+        th:nth-child(5), td:nth-child(5) { min-width: 40px; max-width: 40px; } /* 미반영 */
+        th:nth-child(6), td:nth-child(6) { min-width: 40px; max-width: 40px; } /* 오시공 */
+        th:nth-child(7), td:nth-child(7) { min-width: 40px; max-width: 40px; } /* 잘한시공 */
+        th:nth-child(8), td:nth-child(8) { min-width: 55px; max-width: 55px; } /* 비고 */
         
         /* 모바일에서 테이블 셀 텍스트 줄바꿈 최적화 */
         .criteria {
@@ -754,15 +754,16 @@
             word-wrap: break-word;
             word-break: break-all;
             hyphens: auto;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
+            line-height: 1.1;
         }
             
             /* 모바일에서 체크박스 크기 조정 */
             input[type="checkbox"] {
-                transform: scale(1.1);
-                margin: 0.1rem;
-                min-width: 16px;
-                min-height: 16px;
+                transform: scale(0.9);
+                margin: 0.05rem;
+                min-width: 14px;
+                min-height: 14px;
                 -webkit-appearance: none;
                 appearance: none;
                 border: 2px solid #ff5722;
@@ -784,7 +785,7 @@
                 left: 50%;
                 transform: translate(-50%, -50%);
                 color: white;
-                font-size: 12px;
+                font-size: 10px;
                 font-weight: bold;
             }
             
@@ -862,8 +863,8 @@
             }
             
             .category {
-                font-size: 0.6rem;
-                padding: 0.2rem 0.25rem;
+                font-size: 0.55rem;
+                padding: 0.15rem 0.25rem;
                 font-weight: 600;
                 word-wrap: break-word;
                 word-break: break-all;
@@ -871,17 +872,18 @@
             }
             
             .criteria {
-                font-size: 0.65rem;
+                font-size: 0.7rem;
                 padding: 0.2rem 0.25rem;
-                line-height: 1.1;
+                line-height: 1.2;
             }
             
             /* 작은 모바일에서 점검항목 칸 텍스트 최적화 */
             td:nth-child(2) {
-                font-size: 0.6rem;
+                font-size: 0.55rem;
                 word-wrap: break-word;
                 word-break: break-all;
                 hyphens: auto;
+                line-height: 1.0;
             }
             
             .remarks {
@@ -974,21 +976,21 @@
             
             /* 작은 모바일에서 체크박스 최적화 */
             input[type="checkbox"] {
-                transform: scale(1.2);
-                margin: 0.05rem;
-                min-width: 14px;
-                min-height: 14px;
+                transform: scale(0.8);
+                margin: 0.02rem;
+                min-width: 12px;
+                min-height: 12px;
             }
             
             /* 작은 모바일에서 테이블 셀 최소 너비 조정 */
-            th:nth-child(1), td:nth-child(1) { min-width: 50px; max-width: 50px; }
-            th:nth-child(2), td:nth-child(2) { min-width: 80px; max-width: 80px; }
-            th:nth-child(3), td:nth-child(3) { min-width: 200px; max-width: 200px; }
-            th:nth-child(4), td:nth-child(4) { min-width: 40px; max-width: 40px; }
-            th:nth-child(5), td:nth-child(5) { min-width: 40px; max-width: 40px; }
-            th:nth-child(6), td:nth-child(6) { min-width: 40px; max-width: 40px; }
-            th:nth-child(7), td:nth-child(7) { min-width: 40px; max-width: 40px; }
-            th:nth-child(8), td:nth-child(8) { min-width: 50px; max-width: 50px; }
+            th:nth-child(1), td:nth-child(1) { min-width: 45px; max-width: 45px; }
+            th:nth-child(2), td:nth-child(2) { min-width: 70px; max-width: 70px; }
+            th:nth-child(3), td:nth-child(3) { min-width: 220px; max-width: 220px; }
+            th:nth-child(4), td:nth-child(4) { min-width: 35px; max-width: 35px; }
+            th:nth-child(5), td:nth-child(5) { min-width: 35px; max-width: 35px; }
+            th:nth-child(6), td:nth-child(6) { min-width: 35px; max-width: 35px; }
+            th:nth-child(7), td:nth-child(7) { min-width: 35px; max-width: 35px; }
+            th:nth-child(8), td:nth-child(8) { min-width: 45px; max-width: 45px; }
         }
         
         /* 태블릿 최적화 */
