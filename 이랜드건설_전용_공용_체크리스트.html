@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이랜드건설 전용/공용공간 체크리스트</title>
+    <style>
+        body { font-family: 'Malgun Gothic', Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        .section-header { background-color: #2c3e50; color: white; font-weight: bold; text-align: center; padding: 15px; margin: 30px 0 10px 0; border-radius: 5px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; background-color: white; }
+        th { background-color: #3498db; color: white; padding: 12px 8px; text-align: center; font-weight: bold; border: 1px solid #2980b9; }
+        td { padding: 10px 8px; border: 1px solid #ddd; vertical-align: top; }
+        .category { background-color: #ecf0f1; font-weight: bold; text-align: center; }
+        .checkbox-cell { text-align: center; }
+        input[type="checkbox"] { transform: scale(1.5); margin: 0; }
+        .criteria { font-size: 0.9em; color: #555; line-height: 1.4; }
+        .remarks { width: 150px; }
+        .remarks input { width: 100%; padding: 5px; border: 1px solid #bdc3c7; border-radius: 3px; font-size: 0.9em; }
+        .print-btn { background-color: #27ae60; color: white; border: none; padding: 12px 24px; border-radius: 5px; cursor: pointer; font-size: 16px; margin: 20px 0; }
+        .print-btn:hover { background-color: #229954; }
+        .stats-section { background-color: #e8f4fd; padding: 15px; border-radius: 5px; margin: 20px 0; border: 2px solid #3498db; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 10px; }
+        .stat-item { background-color: white; padding: 10px; border-radius: 5px; text-align: center; border: 1px solid #bdc3c7; }
+        .stat-number { font-size: 24px; font-weight: bold; color: #2c3e50; }
+        .stat-label { font-size: 14px; color: #7f8c8d; margin-top: 5px; }
+        .progress-bar { width: 100%; height: 20px; background-color: #ecf0f1; border-radius: 10px; overflow: hidden; margin-top: 10px; }
+        .progress-fill { height: 100%; background-color: #27ae60; transition: width 0.3s ease; }
+        .progress-text { text-align: center; margin-top: 5px; font-weight: bold; color: #2c3e50; }
+        @media print { .print-btn, .stats-section { display: none; } body { background-color: white; } .container { box-shadow: none; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>이랜드건설 전용/공용공간 체크리스트</h1>
+        <button class="print-btn" onclick="window.print()">인쇄하기</button>
+        <div class="info-section">
+            <h3>현장 정보</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <label>현장명:</label>
+                    <input type="text" placeholder="현장명을 입력하세요">
+                </div>
+                <div class="info-item">
+                    <label>점검일:</label>
+                    <input type="date">
+                </div>
+                <div class="info-item">
+                    <label>점검자:</label>
+                    <input type="text" placeholder="점검자명">
+                </div>
+                <div class="info-item">
+                    <label>동/호수:</label>
+                    <input type="text" placeholder="예: 101동 501호">
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <h3>📊 점검 현황 통계</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalItems">0</div>
+                    <div class="stat-label">전체 항목</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="reflectedItems">0</div>
+                    <div class="stat-label">반영</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="reflectedProgress" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text" id="reflectedPercent">0%</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="notReflectedItems">0</div>
+                    <div class="stat-label">미반영</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="correctConstruction">0</div>
+                    <div class="stat-label">잘한시공</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="constructionProgress" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text" id="constructionPercent">0%</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="incorrectConstruction">0</div>
+                    <div class="stat-label">오시공</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 전용공간 -->
+        <div class="section-header">전용공간</div>
+        <table>
+            <thead>
+                <tr>
+                    <th width="15%">구분</th>
+                    <th width="25%">점검항목</th>
+                    <th width="30%">세부기준/치수</th>
+                    <th width="8%">반영여부</th>
+                    <th width="8%">오시공여부</th>
+                    <th width="8%">현장적용여부</th>
+                    <th width="6%">비고</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class="category">현관/복도</td><td>현관 폭</td><td class="criteria">84㎡ 미만: 1,000mm, 84㎡: 1,200mm, 84㎡ 초과: 1,200mm 이상</td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="remarks"><input type="text" placeholder="비고"></td></tr>
+                <tr><td class="category">거실</td><td>거실 전면폭</td><td class="criteria">60㎡미만: 3,000mm 이상, 85㎡이상: 4,800mm 이상</td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="remarks"><input type="text" placeholder="비고"></td></tr>
+                <tr><td class="category">주방/식당</td><td>주방가구 길이</td><td class="criteria">60㎡미만: 3,000mm 이상, 135㎡이상: 4,500mm 이상</td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="remarks"><input type="text" placeholder="비고"></td></tr>
+                <tr><td class="category">침실</td><td>안방 크기</td><td class="criteria">60㎡미만: 3,000×2,700mm 이상, 120㎡이상: 4,200×3,900mm 이상</td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="remarks"><input type="text" placeholder="비고"></td></tr>
+                <tr><td class="category">욕실</td><td>욕실 바닥 방수</td><td class="criteria">방수층 2중 시공, 바닥 단차 확보</td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="remarks"><input type="text" placeholder="비고"></td></tr>
+                <tr><td class="category">발코니</td><td>발코니 깊이</td><td class="criteria">침실 발코니: 과도한 깊이 방지, 거실/주방 발코니: 최대 확보</td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="remarks"><input type="text" placeholder="비고"></td></tr>
+            </tbody>
+        </table>
+
+        <!-- 공용공간 -->
+        <div class="section-header">공용공간</div>
+        <table>
+            <thead>
+                <tr>
+                    <th width="15%">구분</th>
+                    <th width="25%">점검항목</th>
+                    <th width="30%">세부기준/치수</th>
+                    <th width="8%">반영여부</th>
+                    <th width="8%">오시공여부</th>
+                    <th width="8%">현장적용여부</th>
+                    <th width="6%">비고</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class="category">공용현관</td><td>공용현관 폭</td><td class="criteria">1,800mm 이상, 자동문 설치</td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="remarks"><input type="text" placeholder="비고"></td></tr>
+                <tr><td class="category">계단실</td><td>계단실 유효폭</td><td class="criteria">2,600mm 이상, 계단참 1,200mm 이상</td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="remarks"><input type="text" placeholder="비고"></td></tr>
+                <tr><td class="category">엘리베이터</td><td>승강기 규격</td><td class="criteria">18인승 이상, 피난용 승강기 별도 설치(고층)</td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="remarks"><input type="text" placeholder="비고"></td></tr>
+                <tr><td class="category">지하주차장</td><td>주차장 폭</td><td class="criteria">일반형 2,300mm 이상, 장애인 3,300mm 이상</td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="remarks"><input type="text" placeholder="비고"></td></tr>
+                <tr><td class="category">옥상/지붕</td><td>옥상 난간 높이</td><td class="criteria">바닥마감 위 유효높이 1,200mm 이상</td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="remarks"><input type="text" placeholder="비고"></td></tr>
+                <tr><td class="category">부대복리시설</td><td>커뮤니티/경로당 등</td><td class="criteria">법정 설치기준 및 면적 준수</td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="checkbox-cell"><input type="checkbox"></td><td class="remarks"><input type="text" placeholder="비고"></td></tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function updateStats() {
+            const rows = document.querySelectorAll('tbody tr');
+            let totalItems = 0, reflectedItems = 0, notReflectedItems = 0, correctConstruction = 0, incorrectConstruction = 0, fieldApplied = 0;
+            rows.forEach(row => {
+                const cbs = row.querySelectorAll('input[type="checkbox"]');
+                if (cbs.length >= 3) {
+                    totalItems++;
+                    if (cbs[0].checked) reflectedItems++; else notReflectedItems++;
+                    if (cbs[1].checked) correctConstruction++; else incorrectConstruction++;
+                    if (cbs[2].checked) fieldApplied++;
+                }
+            });
+            document.getElementById('totalItems').textContent = totalItems;
+            document.getElementById('reflectedItems').textContent = reflectedItems;
+            document.getElementById('notReflectedItems').textContent = notReflectedItems;
+            document.getElementById('correctConstruction').textContent = correctConstruction;
+            document.getElementById('incorrectConstruction').textContent = incorrectConstruction;
+            document.getElementById('fieldApplied').textContent = fieldApplied;
+            const reflectedPercent = totalItems > 0 ? Math.round((reflectedItems / totalItems) * 100) : 0;
+            const constructionPercent = totalItems > 0 ? Math.round((correctConstruction / totalItems) * 100) : 0;
+            const fieldPercent = totalItems > 0 ? Math.round((fieldApplied / totalItems) * 100) : 0;
+            document.getElementById('reflectedProgress').style.width = reflectedPercent + '%';
+            document.getElementById('constructionProgress').style.width = constructionPercent + '%';
+            document.getElementById('fieldProgress').style.width = fieldPercent + '%';
+            document.getElementById('reflectedPercent').textContent = reflectedPercent + '%';
+            document.getElementById('constructionPercent').textContent = constructionPercent + '%';
+            document.getElementById('fieldPercent').textContent = fieldPercent + '%';
+            const progressBars = document.querySelectorAll('.progress-fill');
+            progressBars.forEach(bar => {
+                const percent = parseInt(bar.style.width);
+                if (percent >= 80) bar.style.backgroundColor = '#27ae60';
+                else if (percent >= 60) bar.style.backgroundColor = '#f39c12';
+                else bar.style.backgroundColor = '#e74c3c';
+            });
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStats();
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => { checkbox.addEventListener('change', updateStats); });
+        });
+    </script>
+</body>
+</html> 
